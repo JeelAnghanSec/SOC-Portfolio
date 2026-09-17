@@ -37,3 +37,14 @@ This section documents the architecture and components of my SOC home lab.
                   │      Linux      │
                   │    SIEM / XDR   │
                   └─────────────────┘
+
+```
+---
+
+## 📸 Lab Evidence
+
+### Wazuh Server
+
+The Wazuh server provides centralized security monitoring and collects security telemetry from connected endpoints.
+
+![Wazuh Server](./images/WAZUH-SERVER.png)
