@@ -45,3 +45,22 @@ The objective is to collect endpoint telemetry, detect suspicious activity, inve
                  Alert Investigation
 ```
 
+---
+
+## 🔧 Technologies & Tools
+
+| Category | Technologies |
+|---|---|
+| SIEM / XDR | Wazuh |
+| Endpoint | Windows 10 |
+| Endpoint Agent | Wazuh Agent |
+| Log Sources | Windows Event Logs, Sysmon |
+| System Monitoring | Sysmon |
+| Attack Simulation | Kali Linux |
+| Detection | Wazuh Rules & Custom Rules |
+| Investigation | Wazuh Dashboard |
+| Threat Intelligence | VirusTotal, AbuseIPDB |
+| Framework | MITRE ATT&CK |
+| Scripting | PowerShell |
+| Network Analysis | Wireshark |
+
