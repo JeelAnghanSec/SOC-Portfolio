@@ -154,8 +154,6 @@ The Windows 10 endpoint is registered with the Wazuh Manager and is visible thro
 
 ---
 
----
-
 ### 🔍 Sysmon Service
 
 Sysmon is installed and running on the Windows 10 endpoint as a Windows service. It provides detailed endpoint telemetry that can be used for security monitoring and investigation.
