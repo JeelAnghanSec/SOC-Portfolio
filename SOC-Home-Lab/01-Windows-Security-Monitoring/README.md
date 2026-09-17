@@ -192,6 +192,76 @@ The captured Wazuh telemetry includes the Windows agent name, agent IP address, 
 
 ---
 
+### ⚡ PowerShell Process Creation
+
+Sysmon captured a **Process Create (Event ID 1)** event for PowerShell on the Windows 10 endpoint. The event provides detailed process telemetry, including the executable path, command line, process ID, and MITRE ATT&CK mapping.
+
+The activity was generated as a controlled PowerShell monitoring test within the SOC home lab.
+
+#### 🔎 Investigation Details
+
+| Field | Value |
+|---|---|
+| Event ID | `1` — Process Create |
+| Process | `powershell.exe` |
+| Image | `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe` |
+| Process ID | `5600` |
+| MITRE ATT&CK | `T1059.001` — PowerShell |
+| Command Line | `powershell.exe -NoProfile -Command "Write-Host 'SOC PowerShell Monitoring Test'"` |
+| Computer | `DESKTOP-MOVB2SI` |
+
+#### 🚩 Indicators of Interest
+
+| Type | Value |
+|---|---|
+| Process | `powershell.exe` |
+| Executable Path | `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe` |
+| Command | `Write-Host 'SOC PowerShell Monitoring Test'` |
+| MITRE Technique | `T1059.001` |
+
+> **Analysis:** The PowerShell execution shown here is a controlled lab activity. The presence of PowerShell alone does not indicate malicious behavior; the command line and surrounding telemetry should be evaluated during an investigation.
+
+![PowerShell Event](./images/07-powershell-event.png)
+
+---
+
+### 🛡️ Wazuh PowerShell Telemetry
+
+The PowerShell process creation event was successfully collected from the Windows endpoint by the **Wazuh Agent** and indexed in Wazuh. This confirms that Sysmon process telemetry is available for centralized SOC investigation.
+
+The Wazuh record identifies the PowerShell executable and associates the event with the monitored Windows endpoint.
+
+#### 🔎 Wazuh Investigation Details
+
+| Field | Value |
+|---|---|
+| Agent | `JEEL-Windows` |
+| Agent ID | `001` |
+| Agent IP | `192.168.111.143` |
+| Event ID | `1` — Process Create |
+| Original File Name | `PowerShell.EXE` |
+| Process Image | `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe` |
+| Product | `Microsoft® Windows® Operating System` |
+| Description | `Windows PowerShell` |
+| Manager | `wazuh` |
+
+#### 🚩 Indicators of Interest
+
+| Type | Value |
+|---|---|
+| Agent | `JEEL-Windows` |
+| Agent IP | `192.168.111.143` |
+| Process | `PowerShell.EXE` |
+| Executable Path | `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe` |
+| Event ID | `1` |
+| MITRE Technique | `T1059.001` — PowerShell |
+
+> **Analysis:** Wazuh successfully received and indexed the Sysmon process telemetry, allowing the SOC analyst to investigate PowerShell execution centrally. The IP address is the Windows lab endpoint address and is documented as host context, not as a malicious IOC.
+
+![Wazuh PowerShell Event](./images/08-wazuh-powershell-event.png)
+
+---
+
 ## 🚨 Detection & Investigation Workflow
 
 Each investigation follows a structured SOC workflow:
