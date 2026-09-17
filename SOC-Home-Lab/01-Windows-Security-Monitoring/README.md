@@ -1,18 +1,63 @@
 # 🪟 Windows Security Monitoring
 
-This section documents security monitoring and detection activities performed on the Windows 10 endpoint using Wazuh and Sysmon.
+This project documents the deployment and security monitoring of a Windows 10 endpoint using **Wazuh Agent, Sysmon, and Windows Event Logs**.
 
-## Planned Investigations
+The objective is to collect endpoint telemetry, detect suspicious activity, investigate security alerts, and document findings from a SOC analyst perspective.
 
-- Sysmon installation
-- Windows authentication monitoring
-- Failed login detection
-- Brute-force attack detection
-- Suspicious PowerShell activity
-- Process monitoring
-- File integrity monitoring
-- Windows Event Log analysis
+---
 
-## Evidence
+## 🎯 Objectives
 
-Screenshots, Wazuh alerts, event logs, detection rules, and investigation findings will be documented here.
+- Monitor Windows 10 endpoint activity
+- Collect Windows Security Event Logs
+- Deploy and configure Sysmon
+- Monitor authentication activity
+- Detect failed login attempts
+- Investigate brute-force activity
+- Monitor PowerShell execution
+- Analyze process creation events
+- Monitor file and system activity
+- Investigate Wazuh security alerts
+- Map relevant detections to MITRE ATT&CK
+
+---
+
+## 🏗️ Monitoring Architecture
+
+```text
+                    Windows 10 Endpoint
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+        Windows Event Logs           Sysmon
+              │                         │
+              └────────────┬────────────┘
+                           │
+                      Wazuh Agent
+                           │
+                           ▼
+                    Wazuh Manager
+                           │
+                           ▼
+                    Wazuh Dashboard
+                           │
+                           ▼
+                 Alert Investigation
+```
+## 🔧 Technologies & Tools
+
+| Category | Technologies |
+|---|---|
+| SIEM / XDR | Wazuh |
+| Endpoint | Windows 10 |
+| Endpoint Agent | Wazuh Agent |
+| Log Sources | Windows Event Logs, Sysmon |
+| System Monitoring | Sysmon |
+| Attack Simulation | Kali Linux |
+| Detection | Wazuh Rules & Custom Rules |
+| Investigation | Wazuh Dashboard |
+| Threat Intelligence | VirusTotal, AbuseIPDB |
+| Framework | MITRE ATT&CK |
+| Scripting | PowerShell |
+| Network Analysis | Wireshark |
+
