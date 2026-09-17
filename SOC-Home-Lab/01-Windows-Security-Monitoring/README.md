@@ -174,6 +174,26 @@ The captured events can be analyzed by the SOC to identify unusual or potentiall
 
 ---
 
+### 🔐 Windows Authentication Event
+
+Windows Security Event Logs provide authentication telemetry that can be used to identify failed login attempts. In this lab, a controlled failed authentication attempt generated **Event ID 4625**, indicating that an account failed to log on.
+
+This event provides useful information such as the timestamp, affected account, logon type, workstation, and authentication details for further investigation.
+
+![Windows Security Event](./images/05-windows-security-event.png)
+
+---
+
+### 🚨 Wazuh Authentication Event
+
+The Windows authentication event was successfully collected by the **Wazuh Agent** and indexed in the Wazuh platform. Searching for **Event ID 4625** allows the SOC analyst to identify failed authentication activity from the monitored Windows endpoint.
+
+The captured Wazuh telemetry includes the Windows agent name, agent IP address, timestamp, Event ID, and authentication-related fields.
+
+![Wazuh Authentication Event](./images/06-wazuh-authentication-event.png)
+
+---
+
 ## 🚨 Detection & Investigation Workflow
 
 Each investigation follows a structured SOC workflow:
