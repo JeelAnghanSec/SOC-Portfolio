@@ -49,11 +49,13 @@ The Wazuh server provides centralized security monitoring and collects security 
 
 ![Wazuh Server](./images/WAZUH-SERVER.png)
 
+---
+
+
 # 🖥️ Windows Security Monitoring
 
 This section documents the configuration and monitoring of a Windows 10 endpoint using the Wazuh Agent.
 
----
 
 ## ⚙️ Windows Wazuh Agent Service
 
