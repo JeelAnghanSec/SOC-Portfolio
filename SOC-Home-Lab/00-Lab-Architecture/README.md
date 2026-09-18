@@ -120,7 +120,7 @@ security telemetry.
 
 The Wazuh Dashboard provides centralized visibility into the Windows endpoint and its security telemetry.
 
-![Wazuh Windows Agent](./images/02-Wazuh-windows-agent.png)
+![Wazuh Windows Agent](./images/05-Wazuh-agents.png)
 
 ### Evidence
 
