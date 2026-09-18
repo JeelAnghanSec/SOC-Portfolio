@@ -126,7 +126,7 @@ SOC-Home-Lab/
 - Kali Linux
 - Controlled attack simulations
 
-### Planned
+###Linux Endpoint
 - Ubuntu/Linux Wazuh Agent
 - Linux attack detection
 - Custom Wazuh detection rules
