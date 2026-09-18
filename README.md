@@ -21,31 +21,50 @@ A hands-on Security Operations Center (SOC) home lab focused on security monitor
 ## 🏗️ Lab Architecture
 
 ```text
-                  ┌─────────────────┐
-                  │   Kali Linux    │
-                  │    ATTACKER     │
-                  └────────┬────────┘
-                           │
-                    Attack Simulation
+                               ATTACK SIMULATION
                            │
                            ▼
-                  ┌─────────────────┐
-                  │    Windows 10   │
-                  │   Wazuh Agent   │
-                  │     TARGET      │
-                  └────────┬────────┘
+                    ┌──────────────┐
+                    │ Kali Linux   │
+                    │   Attacker   │
+                    └──────┬───────┘
                            │
-                      Security Logs
+                 Simulated Security Events
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+       ┌──────────────┐          ┌──────────────┐
+       │ Windows 10   │          │ Ubuntu Linux │
+       │ Wazuh Agent  │          │ Wazuh Agent  │
+       └──────┬───────┘          └──────┬───────┘
+              │                         │
+              │ Security Telemetry      │ Security Telemetry
+              │                         │
+              └────────────┬────────────┘
+                           ▼
+                    ┌──────────────┐
+                    │ Wazuh Server │
+                    │   Manager    │
+                    └──────┬───────┘
                            │
                            ▼
-                  ┌─────────────────┐
-                  │   Wazuh Server  │
-                  │      Linux      │
-                  │    SIEM / XDR   │
-                  └─────────────────┘
+                    ┌──────────────┐
+                    │    Wazuh     │
+                    │  Dashboard   │
+                    └──────┬───────┘
+                           │
+                           ▼
+              ┌────────────────────────┐
+              │ SOC Investigation      │
+              │                        │
+              │ • Alerts               │
+              │ • Logs                 │
+              │ • Security Events      │
+              │ • IOCs                 │
+              │ • Endpoint Monitoring  │
+              └────────────────────────┘
 ```
-
-**Current Status:** Wazuh Server and Windows 10 Wazuh Agent are configured. A Linux Wazuh Agent will be added in a later phase.
 
 ---
 
@@ -126,7 +145,7 @@ SOC-Home-Lab/
 - Kali Linux
 - Controlled attack simulations
 
-###Linux Endpoint
+### Linux Endpoint
 - Ubuntu/Linux Wazuh Agent
 - Linux attack detection
 - Custom Wazuh detection rules
