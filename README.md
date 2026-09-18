@@ -102,10 +102,7 @@ SOC-Home-Lab/
 ├── 02-Linux-Security-Monitoring/
 │
 ├── 03-Wazuh-Detection-Engineering/
-│
-├── 04-Attack-Simulations/
-│
-└── 05-Incident-Reports/
+
 ```
 
 ---
