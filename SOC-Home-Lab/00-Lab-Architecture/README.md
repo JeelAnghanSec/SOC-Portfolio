@@ -9,7 +9,8 @@ This section documents the architecture and components of my SOC home lab.
 | System | Role | Platform |
 |---|---|---|
 | Wazuh Server | SIEM / XDR | Linux |
-| Windows Endpoint | Monitored Target | Windows 10 |
+| Windows Endpoint | Monitored Endpoint / Wazuh Agent | Windows 10 |
+| Ubuntu Endpoint | Monitored Endpoint / Wazuh Agent | Ubuntu 24.04.4 LTS |
 | Kali Linux | Attack Simulation | Kali Linux |
 
 ## Architecture
