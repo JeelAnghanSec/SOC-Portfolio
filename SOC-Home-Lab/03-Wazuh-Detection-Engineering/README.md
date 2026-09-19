@@ -191,6 +191,87 @@ rule.groups:authentication_failed
 ```
 ![Linux SSH Failure Logs in Wazuh](./images/04-wazuh-ssh-alert.png)
 ---
+---
+
+# 🪟 Windows Authentication Detection
+
+Windows authentication activity was investigated using Windows Security Event Logs and Wazuh.
+
+The objective is to identify authentication events, analyze the associated Windows Event IDs, and investigate the resulting Wazuh telemetry.
+
+---
+
+## 🔍 3. Windows Authentication Events
+
+Windows Security Event Logs provide authentication telemetry from the Windows 10 endpoint.
+
+Important authentication events include:
+
+| Event ID | Description |
+|---|---|
+| 4624 | Successful account logon |
+| 4625 | Failed account logon |
+
+These events can be investigated to identify:
+
+- Successful logins
+- Failed login attempts
+- Account names
+- Logon types
+- Source network information
+- Authentication patterns
+
+---
+
+## 🚨 4. Wazuh Windows Authentication Detection
+
+The Windows authentication events are collected by the Wazuh Agent and analyzed by the Wazuh Manager.
+
+The resulting events can be investigated through the Wazuh Dashboard.
+
+The investigation focuses on:
+
+- Windows Event ID
+- Username
+- Logon type
+- Source IP address
+- Authentication status
+- Wazuh rule ID
+- Alert severity
+- MITRE ATT&CK mapping
+
+### 📸 Evidence — Windows Authentication Event
+
+![Windows Authentication Event](./images/06-windows-authentication-event.png)
+
+---
+
+### 📸 Evidence — Wazuh Windows Authentication Alert
+
+![Wazuh Windows Authentication Alert](./images/07-wazuh-windows-authentication-alert.png)
+
+---
+
+## 🔄 Windows Authentication Detection Workflow
+
+```text
+Windows Authentication Attempt
+            ↓
+Windows Security Event Log
+            ↓
+Wazuh Agent
+            ↓
+Wazuh Manager
+            ↓
+Wazuh Detection Rule
+            ↓
+Wazuh Alert
+            ↓
+SOC Investigation
+            ↓
+MITRE ATT&CK Mapping
+```
+---
 
 # 🎓 Skills Demonstrated
 
