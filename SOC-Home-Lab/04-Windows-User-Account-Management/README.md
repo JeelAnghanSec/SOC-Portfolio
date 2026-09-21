@@ -8,7 +8,6 @@ The generated Windows Security telemetry was then investigated through **Wazuh**
 
 ---
 
-
 ## 🎯 Objectives
 
 - Create a temporary Windows local user
@@ -29,37 +28,22 @@ The generated Windows Security telemetry was then investigated through **Wazuh**
 
 ## 🏗️ Investigation Architecture
 
-```text
-Windows 10 Endpoint
-        │
-        ├── Create Local User
-        │
-        ├── Add User to Administrators
-        │
-        ├── Verify Group Membership
-        │
-        └── Delete User
-                │
-                ▼
-      Windows Security Event Logs
-                │
-                ▼
-          Wazuh Agent
-                │
-                ▼
-         Wazuh Manager
-                │
-                ▼
-        Wazuh Detection Rules
-                │
-                ▼
-         Wazuh Dashboard
-                │
-                ▼
-        SOC Investigation
-                │
-                ▼
-        MITRE ATT&CK Mapping
+```mermaid
+flowchart TD
+    A[Windows 10 Endpoint] --> B[Create Local User]
+    A --> C[Add User to Administrators]
+    A --> D[Verify Group Membership]
+    A --> E[Delete User]
+    B --> F[Windows Security Event Logs]
+    C --> F
+    D --> F
+    E --> F
+    F --> G[Wazuh Agent]
+    G --> H[Wazuh Manager]
+    H --> I[Wazuh Detection Rules]
+    I --> J[Wazuh Dashboard]
+    J --> K[SOC Investigation]
+    K --> L[MITRE ATT&CK Mapping]
 ```
 
 ---
@@ -321,20 +305,11 @@ The account-management activity generated multiple Windows Security events that 
 
 These events provide a timeline of the account-management activity:
 
-```text
-User Created
-    ↓
-Event ID 4720
-    ↓
-User Logon
-    ↓
-Event ID 4624
-    ↓
-User Added to Administrators
-    ↓
-Event ID 4732
-    ↓
-Wazuh Investigation
+```mermaid
+flowchart TD
+    A[User Created<br/>Event ID 4720] --> B[User Logon<br/>Event ID 4624]
+    B --> C[User Added to Administrators<br/>Event ID 4732]
+    C --> D[Wazuh Investigation]
 ```
 
 ---
@@ -353,39 +328,25 @@ The observed Windows account-management activity maps to the following MITRE ATT
 - **T1136.001** covers using tools such as `net user /add` to create a local account to establish or maintain access to a system.
 - **T1098.007** covers adding an existing account to a local or domain group (e.g., `net localgroup administrators <user> /add`) to gain or maintain elevated privileges — which directly matches the `soc1` → Administrators group change observed here.
 
-
 ---
 
 ## 🔄 Complete Investigation Workflow
 
-```text
-Create Local User
-        ↓
-Event ID 4720
-        ↓
-User Logon
-        ↓
-Event ID 4624
-        ↓
-Add User to Administrators
-        ↓
-Event ID 4732
-        ↓
-Windows Security Logs
-        ↓
-Wazuh Agent
-        ↓
-Wazuh Manager
-        ↓
-Wazuh Dashboard
-        ↓
-Detection Analysis
-        ↓
-SID Analysis
-        ↓
-MITRE ATT&CK Mapping
-        ↓
-SOC Documentation
+```mermaid
+flowchart TD
+    A[Create Local User] --> B[Event ID 4720]
+    B --> C[User Logon]
+    C --> D[Event ID 4624]
+    D --> E[Add User to Administrators]
+    E --> F[Event ID 4732]
+    F --> G[Windows Security Logs]
+    G --> H[Wazuh Agent]
+    H --> I[Wazuh Manager]
+    I --> J[Wazuh Dashboard]
+    J --> K[Detection Analysis]
+    K --> L[SID Analysis]
+    L --> M[MITRE ATT&CK Mapping]
+    M --> N[SOC Documentation]
 ```
 
 ---
@@ -409,7 +370,6 @@ For each account-management activity:
 13. Document the investigation.
 
 ---
-
 
 ## 📌 Project Status
 
