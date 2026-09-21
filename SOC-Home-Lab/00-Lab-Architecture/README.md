@@ -1,150 +1,101 @@
-# 🏗️ SOC Home Lab Architecture
+# 🏗️ SOC Home Lab — Architecture & Endpoint Monitoring
 
 ## Overview
 
-This section documents the architecture and components of my SOC home lab.
+This document covers the architecture of my Security Operations Center (SOC) home lab, built to practice centralized log collection, endpoint monitoring, and security event investigation using **Wazuh**. The lab simulates a small enterprise environment with monitored Windows and Linux endpoints, an attacker machine for generating security events, and a central SIEM/XDR platform for detection and analysis.
 
 ## Lab Components
 
-| System | Role | Platform |
-|---|---|---|
-| Wazuh Server | SIEM / XDR | Linux |
-| Windows Endpoint | Monitored Endpoint / Wazuh Agent | Windows 10 |
-| Ubuntu Endpoint | Monitored Endpoint / Wazuh Agent | Ubuntu 24.04.4 LTS |
-| Kali Linux | Attack Simulation | Kali Linux |
+| System            | Role                              | Platform              |
+|-------------------|------------------------------------|------------------------|
+| Wazuh Server      | SIEM / XDR (central manager)      | Linux                 |
+| Windows Endpoint  | Monitored endpoint (Wazuh Agent)  | Windows 10             |
+| Ubuntu Endpoint   | Monitored endpoint (Wazuh Agent)  | Ubuntu 24.04.4 LTS     |
+| Kali Linux        | Attack simulation                 | Kali Linux             |
 
 ## Architecture
 
-```text
-                                       ATTACK SIMULATION
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │ Kali Linux   │
-                    │   Attacker   │
-                    └──────┬───────┘
-                           │
-                 Simulated Security Events
-                           │
-              ┌────────────┴────────────┐
-              │                         │
-              ▼                         ▼
-       ┌──────────────┐          ┌──────────────┐
-       │ Windows 10   │          │ Ubuntu Linux │
-       │ Wazuh Agent  │          │ Wazuh Agent  │
-       └──────┬───────┘          └──────┬───────┘
-              │                         │
-              │ Security Telemetry      │ Security Telemetry
-              │                         │
-              └────────────┬────────────┘
-                           ▼
-                    ┌──────────────┐
-                    │ Wazuh Server │
-                    │   Manager    │
-                    └──────┬───────┘
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │    Wazuh     │
-                    │  Dashboard   │
-                    └──────┬───────┘
-                           │
-                           ▼
-              ┌────────────────────────┐
-              │ SOC Investigation      │
-              │                        │
-              │ • Alerts               │
-              │ • Logs                 │
-              │ • Security Events      │
-              │ • IOCs                 │
-              │ • Endpoint Monitoring  │
-              └────────────────────────┘
-
+```mermaid
+flowchart TD
+    A[Kali Linux<br/>Attack Simulation] -->|Simulated security events| B[Windows 10<br/>Wazuh Agent]
+    A -->|Simulated security events| C[Ubuntu 24.04 LTS<br/>Wazuh Agent]
+    B -->|Security telemetry| D[Wazuh Server<br/>Manager]
+    C -->|Security telemetry| D
+    D --> E[Wazuh Dashboard]
+    E --> F[SOC Investigation<br/>Alerts · Logs · IOCs · Endpoint Monitoring]
 ```
+
+Kali Linux generates simulated attack traffic against both endpoints. Each endpoint runs a Wazuh Agent that forwards security telemetry to the central Wazuh Server, which correlates events and surfaces them in the Wazuh Dashboard for investigation.
+
 ---
 
 ## 📸 Lab Evidence
 
 ### Wazuh Server
 
-The Wazuh server provides centralized security monitoring and collects security telemetry from connected endpoints.
+The Wazuh server provides centralized security monitoring and collects security telemetry from all connected endpoints.
 
 ![Wazuh Server](./images/WAZUH-SERVER.png)
 
+**Evidence:**
+- Wazuh manager deployed and running
+- Receiving telemetry from Windows and Ubuntu agents
+- Central point for alerting, log analysis, and investigation
+
 ---
 
+## 🖥️ Windows Endpoint Monitoring
 
-# 🖥️ Windows Security Monitoring
+Configuration and monitoring setup for the Windows 10 endpoint via the Wazuh Agent.
 
-This section documents the configuration and monitoring of a Windows 10 endpoint using the Wazuh Agent.
-
-
-## ⚙️ Windows Wazuh Agent Service
-
-The Wazuh Agent service is installed and configured on the Windows 10 endpoint.
+### Wazuh Agent Service
 
 ![Windows Wazuh Agent Service](./images/01-Windows-services.png)
 
-### Evidence
-
-- Wazuh Agent service installed
-- Wazuh Agent service configured
-- Windows endpoint prepared for centralized security monitoring
+**Evidence:**
+- Wazuh Agent installed and running as a Windows service
+- Agent configured to communicate with the Wazuh Server
+- Endpoint prepared for centralized security monitoring
 
 ---
 
+## 🐧 Ubuntu Endpoint Monitoring
 
-# 🐧 Ubuntu Security Monitoring
+Configuration and monitoring setup for the Ubuntu 24.04 LTS endpoint via the Wazuh Agent.
 
-This section documents the configuration and monitoring of the Ubuntu Linux
-endpoint using the Wazuh Agent.
+### Wazuh Agent
 
-
-## ⚙️ Linux Wazuh Agent
-
-The Wazuh Agent is installed and configured on the Ubuntu 24.04 LTS endpoint.
-
-The Linux endpoint is connected to the Wazuh Server and actively sending
-security telemetry.
+The Wazuh Agent is installed and configured on the Ubuntu endpoint, which is actively connected to the Wazuh Server and sending security telemetry.
 
 ![Ubuntu Linux Wazuh Agent Service](./images/04-Wazuh-Linux-agent.png)
 
-### Evidence
-
-- Wazuh Agent service installed
-- Wazuh Agent service configured
-- Ubuntu Linux prepared for centralized security monitoring
+**Evidence:**
+- Wazuh Agent installed and running
+- Agent configured to communicate with the Wazuh Server
+- Endpoint prepared for centralized security monitoring
 
 ---
 
-## 🛡️ Wazuh Dashboard — Windows Endpoint
+### 🛡️ Wazuh Dashboard — Registered Endpoints
 
-The Wazuh Dashboard provides centralized visibility into the Windows endpoint and its security telemetry.
+The Wazuh Dashboard provides centralized visibility into all registered endpoints and their security telemetry.
 
 ![Wazuh Windows Agent](./images/05-Wazuh-agents.png)
 
-### Evidence
-
+**Evidence:**
 - Windows endpoint registered with Wazuh
-- Wazuh Agent communication established
-- Endpoint monitored through Wazuh Dashboard
+- Agent communication established and active
+- Endpoint monitored through the Wazuh Dashboard
 - Security events available for investigation
 
 ---
 
-## 🔄 Monitoring Flow
+## 🔄 Endpoint-to-Dashboard Data Flow
 
-```text
-Windows 10
-    │
-    ▼
-Wazuh Agent
-    │
-    ▼
-Wazuh Manager
-    │
-    ▼
-Wazuh Dashboard
-    │
-    ▼
-Security Alerts & Investigation
+```mermaid
+flowchart LR
+    A[Monitored Endpoint<br/>Windows or Ubuntu] --> B[Wazuh Agent]
+    B --> C[Wazuh Manager]
+    C --> D[Wazuh Dashboard]
+    D --> E[Security Alerts &<br/>Investigation]
+```
