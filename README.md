@@ -154,11 +154,11 @@ SOC-Home-Lab/
 └── README.md
 ```
 
-- [`00-Lab-Architecture/`](./00-Lab-Architecture) — network diagram, VM specs, and build notes
-- [`01-Windows-Security-Monitoring/`](./01-Windows-Security-Monitoring) — Windows Event Log analysis, Sysmon config, brute-force & PowerShell detections
-- [`02-Linux-Security-Monitoring/`](./02-Linux-Security-Monitoring) — SSH attack detection, suspicious command monitoring
-- [`03-Wazuh-Detection-Engineering/`](./03-Wazuh-Detection-Engineering) — custom rule development and testing
-- [`04-Windows-User-Account-Management/`](./04-Windows-User-Account-Management) — account creation/modification monitoring and related detections
+- [`00-Lab-Architecture/`](./SOC-Home-Lab/00-Lab-Architecture) — network diagram, VM specs, and build notes
+- [`01-Windows-Security-Monitoring/`](./SOC-Home-Lab/01-Windows-Security-Monitoring) — Windows Event Log analysis, Sysmon config, brute-force & PowerShell detections
+- [`02-Linux-Security-Monitoring/`](./SOC-Home-Lab/02-Linux-Security-Monitoring) — SSH attack detection, suspicious command monitoring
+- [`03-Wazuh-Detection-Engineering/`](./SOC-Home-Lab/03-Wazuh-Detection-Engineering) — custom rule development and testing
+- [`04-Windows-User-Account-Management/`](./SOC-Home-Lab/04-Windows-User-Account-Management) — account creation/modification monitoring and related detections
 
 > 📝 Rename this folder link above if the actual folder name differs — keep this section in sync whenever you add or rename a folder.
 
