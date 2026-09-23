@@ -2,7 +2,7 @@
 
 This is **Task 05** of my `SOC-Home-Lab` project, focused on implementing and testing **File Integrity Monitoring (FIM)** using **Wazuh** on a Windows 10 endpoint.
 
-The task covers creating a directory to represent a sensitive data location, configuring real-time `syscheck` monitoring for that directory in `ossec.conf`, creating a baseline file, and modifying it to trigger a detection. The resulting Wazuh alert is then reviewed to demonstrate the checksum comparison, rule metadata, and MITRE ATT&CK mapping produced by the FIM engine.
+The task covers creating a directory to represent a sensitive data location, configuring real-time `syscheck` monitoring for that directory in `ossec.conf`, creating a baseline file, modifying it to trigger a detection, and finally deleting it to trigger a second, distinct detection. The resulting Wazuh alerts are then reviewed to demonstrate the checksum comparison, rule metadata, and MITRE ATT&CK mapping produced by the FIM engine for both **modification** and **deletion** events.
 
 ---
 
@@ -13,7 +13,9 @@ The task covers creating a directory to represent a sensitive data location, con
 - Create a baseline file to establish an integrity checksum
 - Modify the file to simulate unauthorized/tampering activity
 - Verify Wazuh generates a real-time FIM alert on file modification
-- Review the generated alert fields and rule metadata
+- Delete the file to simulate unauthorized removal/destruction of sensitive data
+- Verify Wazuh generates a real-time FIM alert on file deletion
+- Review the generated alert fields and rule metadata for both event types
 - Review cryptographic checksum changes (MD5, SHA1, SHA256)
 - Map the detected activity to the MITRE ATT&CK framework
 - Review compliance framework mappings (GDPR, HIPAA, GPG13)
@@ -33,8 +35,15 @@ flowchart TD
     F --> G[Wazuh Manager]
     G --> H[Detection Rule 550 - Integrity Checksum Changed]
     H --> I[Wazuh Dashboard - FIM Module]
-    I --> J[Alert Review]
+    I --> J[Alert Review - Modification]
     J --> K[MITRE ATT&CK T1565.001 Mapping]
+    D --> L[Delete File]
+    L --> M[Wazuh Agent Detects File Removal]
+    M --> N[Wazuh Manager]
+    N --> O[Detection Rule 553 - File Deleted]
+    O --> P[Wazuh Dashboard - FIM Module]
+    P --> Q[Alert Review - Deletion]
+    Q --> R[MITRE ATT&CK T1485 Mapping]
 ```
 
 ---
@@ -49,7 +58,7 @@ flowchart TD
 | Monitoring Method | Syscheck (File Integrity Monitoring) — Real-time |
 | Configuration File | `ossec.conf` |
 | Review Tool | Wazuh Dashboard (FIM Module) |
-| Detection | Wazuh Rule ID 550 |
+| Detection | Wazuh Rule ID 550 (modified), Rule ID 553 (deleted) |
 | Framework | MITRE ATT&CK |
 | Testing Environment | Controlled SOC Home Lab |
 
@@ -111,7 +120,25 @@ Drilling into the raw alert document provides full detail: the exact timestamp, 
 
 ---
 
+### 7️⃣ Delete the Monitored File
+
+To extend the test beyond content tampering, `important.txt` was deleted outright from `C:\Security_Data` via the same Remote Desktop session (`DESKTOP-MOVB2SI`), leaving the monitored directory empty. This simulates unauthorized removal or destruction of sensitive data rather than a simple edit.
+
+![Delete Monitored File](images/07-delete-monitored-file.png)
+
+---
+
+### 8️⃣ Verify the Deletion Alert in Wazuh
+
+The Wazuh FIM **Events** view for agent `JEEL-Windows` (agent ID `001`) immediately logged a new event for the same path (`c:\security_data\important.txt`), this time with a `deleted` syscheck event type, firing a distinct detection rule — **Rule ID 553 ("File deleted")** — separate from the modification rule used earlier.
+
+![Wazuh FIM Deletion Alert](images/08-wazuh-fim-delete-alert.png)
+
+---
+
 ## 🔍 Detection Rule & Alert Analysis
+
+### Modification Alert
 
 | Field | Value |
 |---|---|
@@ -133,6 +160,21 @@ Drilling into the raw alert document provides full detail: the exact timestamp, 
 
 The change in the MD5/SHA1/SHA256 checksums — not just the modification time — confirms that the **actual content** of the file was altered, ruling out a simple metadata-only change (e.g., a touch or permission update).
 
+### Deletion Alert
+
+| Field | Value |
+|---|---|
+| **Timestamp** | Sep 23, 2026 @ 11:02:49 |
+| **Agent Name** | JEEL-Windows |
+| **Agent ID** | 001 |
+| **Monitored Path** | `c:\security_data\important.txt` |
+| **Syscheck Event** | deleted |
+| **Rule ID** | 553 |
+| **Rule Level** | 7 |
+| **Rule Description** | File deleted |
+
+Because the file no longer exists on disk, Wazuh cannot compare checksums — instead the `deleted` event type itself is the indicator, confirming the file was removed rather than modified. This is logged as a **separate rule (553)** from the modification rule (550), letting analysts distinguish tampering from outright removal at a glance.
+
 ---
 
 ## 🗺️ MITRE ATT&CK Mapping
@@ -140,23 +182,25 @@ The change in the MD5/SHA1/SHA256 checksums — not just the modification time �
 | Technique ID | Technique Name | Relevance |
 |---|---|---|
 | **T1565.001** | Data Manipulation: Stored Data Manipulation | The unauthorized modification of file content on disk mirrors adversary behavior where stored data is altered to manipulate business/operational outcomes or conceal malicious activity. Wazuh's real-time checksum comparison provides direct detection coverage for this technique. |
+| **T1485** | Data Destruction | The unauthorized deletion of a file within a monitored sensitive directory mirrors adversary behavior aimed at destroying data to disrupt availability, deny recovery, or erase evidence. Wazuh's real-time FIM deletion detection (Rule 553) provides direct detection coverage for this technique. |
 
 ---
 
 ## 📌 Key Takeaways
 
 - Real-time `syscheck` detected the unauthorized file modification within seconds of the change, with no reliance on scheduled scan intervals.
-- The alert fired at **rule level 7**, appropriately reflecting a moderate-severity integrity violation rather than a routine, low-priority event.
+- The modification alert fired at **rule level 7**, appropriately reflecting a moderate-severity integrity violation rather than a routine, low-priority event.
 - Full cryptographic hash comparison (MD5, SHA1, SHA256) gave high-confidence evidence that file **content**, not just metadata, was changed.
 - The `full_log` field preserved forensic detail — old vs. new modification time and old vs. new hash values — enough to reconstruct what changed without touching the endpoint directly.
-- Automatic mapping to **MITRE ATT&CK T1565.001** and to GDPR/HIPAA/GPG13 controls shows how a single low-level telemetry event can support both threat detection and compliance reporting simultaneously.
-- This task highlights FIM's value for monitoring sensitive directories (credential stores, configuration files, financial/PII data folders) where unauthorized changes should never occur silently.
+- Deleting the same file produced a **separate, purpose-built rule (553 – File deleted)** rather than reusing the modification rule, showing that Wazuh's FIM engine distinguishes between content tampering and outright file removal.
+- Automatic mapping to **MITRE ATT&CK T1565.001** (modification) and **T1485** (deletion), plus GDPR/HIPAA/GPG13 controls, shows how low-level telemetry from a single monitored directory can support both threat detection and compliance reporting across multiple attack behaviors.
+- This task highlights FIM's value for monitoring sensitive directories (credential stores, configuration files, financial/PII data folders) where unauthorized changes — or disappearances — should never happen silently.
 
 ---
 
 ## ✅ Conclusion
 
-This task, as part of my SOC Home Lab project, demonstrates end-to-end configuration and validation of **Wazuh File Integrity Monitoring** — from editing the agent's `ossec.conf` to triggering, detecting, and reviewing a real-world-style tampering event. It builds practical skills in FIM configuration, alert triage, checksum-based analysis, and mapping detections to both the MITRE ATT&CK framework and regulatory compliance controls.
+This task, as part of my SOC Home Lab project, demonstrates end-to-end configuration and validation of **Wazuh File Integrity Monitoring** — from editing the agent's `ossec.conf` to triggering, detecting, and reviewing both a real-world-style tampering event and a file-deletion event. It builds practical skills in FIM configuration, alert triage across multiple event types, checksum-based analysis, and mapping detections to both the MITRE ATT&CK framework and regulatory compliance controls.
 
 ---
 
@@ -170,6 +214,8 @@ This task, as part of my SOC Home Lab project, demonstrates end-to-end configura
 │   ├── 03-configure-ossec-fim-rule.png
 │   ├── 04-modify-monitored-file.png
 │   ├── 05-wazuh-fim-alert.png
-│   └── 06-wazuh-fim-file-integrity-details.png
+│   ├── 06-wazuh-fim-file-integrity-details.png
+│   ├── 07-delete-monitored-file.png
+│   └── 08-wazuh-fim-delete-alert.png
 └── README.md
 ```
