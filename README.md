@@ -160,8 +160,6 @@ SOC-Home-Lab/
 - [`03-Wazuh-Detection-Engineering/`](./SOC-Home-Lab/03-Wazuh-Detection-Engineering) — custom rule development and testing
 - [`04-Windows-User-Account-Management/`](./SOC-Home-Lab/04-Windows-User-Account-Management) — account creation/modification monitoring and related detections
 
-> 📝 Rename this folder link above if the actual folder name differs — keep this section in sync whenever you add or rename a folder.
-
 ---
 
 ## 🖥️ Lab Environment
@@ -258,7 +256,6 @@ Each investigation folder contains supporting evidence such as:
 - [ ] Publish custom Wazuh detection rule library
 - [ ] Add File Integrity Monitoring (FIM) lab
 - [ ] Add threat intel enrichment (VirusTotal / AbuseIPDB integration)
-- [ ] Add full incident response tabletop scenario
 
 ---
 
