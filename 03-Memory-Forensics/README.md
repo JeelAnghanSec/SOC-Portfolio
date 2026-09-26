@@ -1,19 +1,25 @@
-
 # 🧠 Memory Forensics
 
-**From volatile memory to forensic evidence.**
+**Malware fades from disk. It can't hide from RAM.**
 
-This directory contains hands-on **memory forensics investigations** focused on uncovering malicious processes, network activity, hidden artifacts, and Indicators of Compromise (IOCs) from memory dumps.
+This directory holds hands-on memory forensics investigations built around a simple truth: volatile memory captures what attackers try hardest to erase. Every dump here has been dissected to uncover hidden processes, injected code, live network connections, and the fingerprints malware leaves behind while it's actually running.
+
+This is the difference between finding a crime scene and catching the act in progress.
+
+---
 
 ### 🔍 Core Skills
-- Memory Dump Analysis
-- Process & Malware Investigation
-- Network Artifact Analysis
-- IOC Discovery
-- Threat Hunting
-- Incident Response
-- Volatility & DFIR Tooling
+- 🧩 **Memory Dump Analysis** — parsing raw memory into readable, actionable structure
+- 👾 **Process & Malware Investigation** — spotting rogue, hollowed, or hidden processes
+- 🌐 **Network Artifact Analysis** — reconstructing connections still alive in memory
+- 🚩 **IOC Discovery** — extracting indicators no disk scan would ever catch
+- 🎯 **Threat Hunting** — actively chasing anomalies instead of waiting for alerts
+- 🛠️ **Incident Response** — turning findings into containment and next steps
+- 🧬 **Volatility & DFIR Tooling** — wielding the industry-standard memory framework
 
-📂 Each subfolder represents a completed forensic investigation with its **analysis, findings, evidence, and screenshots**.
+---
 
-> **Goal:** Investigate what happened — recover the evidence — understand the attack.
+### 📂 What's Inside
+Each subfolder is a complete forensic case study — investigation, findings, extracted evidence, and screenshots documenting the trail from suspicion to proof.
+
+> **Goal:** Investigate what happened. Recover what was hidden. Understand the attack.
