@@ -103,10 +103,10 @@ Status of each investigation planned for this project:
 | # | Investigation | Status |
 |---|---|---|
 | 1 | Windows Authentication Monitoring | ✅ Completed |
-| 2 | Brute-Force Detection | 🔜 In Progress |
+| 2 | Brute-Force Detection | ✅ Completed |
 | 3 | PowerShell Monitoring | ✅ Completed |
 | 4 | Process Monitoring | ✅ Completed |
-| 5 | File Integrity Monitoring | 🔜 Planned |
+| 5 | File Integrity Monitoring | ✅ Completed |
 | 6 | Windows Event Log Analysis | ✅ Completed |
 
 ### 1. Windows Authentication Monitoring
