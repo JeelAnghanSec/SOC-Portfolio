@@ -1,264 +1,214 @@
-# 🛡️ SOC Home Lab
+<div align="center">
 
-![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-blue)
-![Focus](https://img.shields.io/badge/focus-Blue%20Team%20%2F%20Detection%20Engineering-red)
+# 🛡️ SOC-PORTFOLIO
+### `> detect. investigate. respond. document._`
 
-A hands-on Security Operations Center (SOC) home lab built to practice real-world blue team workflows: security monitoring, attack simulation, detection engineering, log analysis, and incident response — all powered by **Wazuh**.
+**Jeel Anghan** · Aspiring SOC Analyst · Blue Team · Detection Engineering · DFIR
 
-This project simulates a small enterprise environment where a Kali Linux attacker machine generates real attack telemetry against Windows and Linux endpoints, which is then collected, correlated, and investigated through a centralized SOC pipeline. It's designed to demonstrate practical skills in endpoint monitoring, log analysis, custom rule writing, and MITRE ATT&CK-mapped incident response.
+![Focus](https://img.shields.io/badge/focus-Blue%20Team%20%7C%20DFIR-red?style=for-the-badge)
+![SIEM](https://img.shields.io/badge/SIEM-Wazuh-005571?style=for-the-badge)
+![Framework](https://img.shields.io/badge/MITRE-ATT%26CK-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-actively%20building-brightgreen?style=for-the-badge)
 
----
+*Four disciplines. One analyst mindset. Every project is hands-on, evidence-backed, and mapped to how real SOC teams work.*
 
-## 📑 Table of Contents
-
-- [Objectives](#-objectives)
-- [Lab Architecture](#️-lab-architecture)
-- [Lab Requirements](#️-lab-requirements)
-- [Technologies & Tools](#-technologies--tools)
-- [SOC Workflow](#-soc-workflow)
-- [Project Structure](#-project-structure)
-- [Lab Environment](#️-lab-environment)
-- [Security Detection Labs](#-security-detection-labs)
-- [Sample Investigation](#-sample-investigation)
-- [Evidence](#-evidence)
-- [Skills Demonstrated](#-skills-demonstrated)
-- [Roadmap](#️-roadmap)
-- [Disclaimer](#️-disclaimer)
+</div>
 
 ---
 
-## 🎯 Objectives
+## 🧭 MISSION BRIEF
 
-- Build a practical SOC monitoring environment
-- Monitor Windows and Linux endpoints
-- Simulate controlled security attacks
-- Collect and analyze security logs
-- Create and test custom Wazuh detection rules
-- Investigate security alerts
-- Map detections to MITRE ATT&CK
-- Practice incident response
-- Document attack and defense workflows
+A SOC analyst doesn't just watch alerts. They **see the attack on the wire, find it in memory, catch it in the inbox, and build the detection that stops it next time.**
+
+This portfolio is built around exactly that. It moves through the full investigation surface of a modern SOC:
+
+| Layer | Question it answers | Where |
+|---|---|---|
+| 🖥️ **Endpoint & SIEM** | *What is happening on my machines right now?* | [SOC-Home-Lab](./SOC-Home-Lab) |
+| 🌐 **Network** | *What did the attacker send across the wire?* | [02-PCAP-Analysis](./02-PCAP-Analysis) |
+| 🧠 **Memory** | *What is hiding where disk forensics can't see?* | [03-Memory-Forensics](./03-Memory-Forensics) |
+| 📧 **Email** | *How did they get in through the front door?* | [04-Phising-Email-Analysis](./04-Phising-Email-Analysis) |
 
 ---
 
-## 🏗️ Lab Architecture
+## 🗺️ THE INVESTIGATION MAP
 
 ```mermaid
-flowchart TD
-    A["🐉 Kali Linux<br/>Attacker"] -->|Simulated Attacks| B["🪟 Windows 10<br/>Wazuh Agent"]
-    A -->|Simulated Attacks| C["🐧 Ubuntu Linux<br/>Wazuh Agent"]
+flowchart LR
+    P["📧 Phishing<br/>Initial Access"] --> E["🖥️ Endpoint<br/>Execution & Persistence"]
+    E --> N["🌐 Network<br/>C2 & Exfiltration"]
+    E --> M["🧠 Memory<br/>In-RAM Artifacts"]
+    N --> S["📊 SIEM<br/>Wazuh Correlation"]
+    M --> S
+    E --> S
+    S --> R["🚨 Triage → Response → Report"]
 
-    B -->|Security Telemetry| D["🖥️ Wazuh Server<br/>Manager"]
-    C -->|Security Telemetry| D
-
-    D --> E["📊 Wazuh Dashboard"]
-    E --> F["🔎 SOC Investigation"]
-
-    F --> G[Alerts]
-    F --> H[Logs]
-    F --> I[Security Events]
-    F --> J[IOCs]
-    F --> K[Endpoint Monitoring]
-
-    classDef attacker fill:#e03131,color:#fff,stroke:#900,stroke-width:1px;
-    classDef endpoint fill:#1971c2,color:#fff,stroke:#0b4a86,stroke-width:1px;
-    classDef server fill:#2f9e44,color:#fff,stroke:#1b6e2f,stroke-width:1px;
-    classDef dashboard fill:#7048e8,color:#fff,stroke:#4c2d99,stroke-width:1px;
-    classDef investigation fill:#f08c00,color:#fff,stroke:#a35d00,stroke-width:1px;
-
-    class A attacker;
-    class B,C endpoint;
-    class D server;
-    class E dashboard;
-    class F,G,H,I,J,K investigation;
+    classDef a fill:#e03131,color:#fff,stroke:#900;
+    classDef b fill:#1971c2,color:#fff,stroke:#0b4a86;
+    classDef c fill:#7048e8,color:#fff,stroke:#4c2d99;
+    classDef d fill:#2f9e44,color:#fff,stroke:#1b6e2f;
+    classDef f fill:#f08c00,color:#fff,stroke:#a35d00;
+    class P a;
+    class E b;
+    class N,M c;
+    class S d;
+    class R f;
 ```
 
+> Each folder covers one stage of a real attack chain, so together they read as one story, from **the first click to the final report**.
+
 ---
 
-## 🖥️ Lab Requirements
+## 📦 PROJECT MODULES
 
-| Component | Spec (minimum) |
+### 🖥️ [SOC Home Lab](./SOC-Home-Lab) `// endpoint monitoring · SIEM · detection engineering`
+A small simulated enterprise: **Kali** attacks, **Windows 10** and **Ubuntu** endpoints report to a central **Wazuh** server.
+- Wazuh Manager, Dashboard, and Agents deployed on an isolated network
+- Windows Event Logs and Sysmon telemetry, plus Linux log monitoring
+- Attack simulation: brute force, suspicious PowerShell, SSH attacks
+- Custom Wazuh detection rules mapped to MITRE ATT&CK
+- Alert triage, IOC investigation, and incident documentation
+
+**Tools:** `Wazuh` `Sysmon` `Kali Linux` `PowerShell` `Bash`
+
+---
+
+### 🌐 [02 · PCAP Analysis](./02-PCAP-Analysis) `// network forensics`
+Reading the network like a crime scene. Packet captures are analyzed to reconstruct what happened, who talked to whom, and what left the building.
+- Traffic triage and protocol analysis
+- Identifying suspicious hosts, connections, and payloads
+- Extracting IOCs (IPs, domains, file hashes) from traffic
+- Timeline reconstruction of network-based incidents
+
+**Tools:** `Wireshark` `Threat Intel Lookups` `IOC Extraction`
+
+---
+
+### 🧠 [03 · Memory Forensics](./03-Memory-Forensics) `// volatile evidence`
+Attackers can avoid the disk, but they can't avoid RAM. Memory images are examined for evidence of malicious activity that leaves little or no trace elsewhere.
+- Process and network-connection analysis from memory dumps
+- Hunting for suspicious or injected processes
+- Recovering artifacts and indicators from volatile memory
+- Documenting findings as an investigation report
+
+**Tools:** `Memory Analysis Frameworks` `Command-Line Forensics`
+
+---
+
+### 📧 [04 · Phishing Email Analysis](./04-Phising-Email-Analysis) `// human-layer defense`
+Most breaches begin with one email. Suspicious messages are dissected end to end and classified with evidence.
+- Email header analysis (sender path, SPF/DKIM/DMARC results)
+- URL and attachment inspection
+- IOC extraction and reputation checks
+- Verdict, impact assessment, and recommended response actions
+
+**Tools:** `Header Analysis` `VirusTotal` `AbuseIPDB`
+
+---
+
+## 🎯 MITRE ATT&CK COVERAGE
+
+| Tactic | Technique | Explored In |
+|---|---|---|
+| Initial Access | [T1566 – Phishing](https://attack.mitre.org/techniques/T1566/) | Phishing Email Analysis |
+| Execution | [T1059.001 – PowerShell](https://attack.mitre.org/techniques/T1059/001/) | SOC Home Lab |
+| Credential Access | [T1110 – Brute Force](https://attack.mitre.org/techniques/T1110/) | SOC Home Lab |
+| Command & Control | [T1071 – Application Layer Protocol](https://attack.mitre.org/techniques/T1071/) | PCAP Analysis |
+| Defense Evasion | [T1055 – Process Injection](https://attack.mitre.org/techniques/T1055/) | Memory Forensics |
+
+*The table grows as new investigations are documented.*
+
+---
+
+## 🧰 ARSENAL
+
+| Domain | Stack |
 |---|---|
-| Hypervisor | VMware Workstation / VirtualBox / Proxmox |
-| Wazuh Server | 2 vCPU, 4 GB RAM, 50 GB disk |
-| Windows 10 Endpoint | 2 vCPU, 4 GB RAM, 60 GB disk |
-| Ubuntu/Linux Endpoint | 1 vCPU, 2 GB RAM, 25 GB disk |
-| Kali Linux Attacker | 2 vCPU, 4 GB RAM, 40 GB disk |
-| Network | Isolated internal/host-only network (no bridged access to production) |
-| Wazuh Version | 4.x _(pin exact version once finalized)_ |
-
-> ⚠️ All machines run on an isolated virtual network with no internet-facing exposure, to safely contain attack simulations.
+| **SIEM / XDR** | Wazuh (Manager, Dashboard, Agents) |
+| **Endpoint Telemetry** | Sysmon, Windows Event Logs, Linux Logs |
+| **Network** | Wireshark |
+| **Threat Intel** | VirusTotal, AbuseIPDB |
+| **Offensive Simulation** | Kali Linux |
+| **Automation** | PowerShell, Bash, Python |
+| **Framework** | MITRE ATT&CK |
 
 ---
 
-
-## 🔧 Technologies & Tools
-
-| Category | Technologies |
-|---|---|
-| SIEM / XDR | Wazuh |
-| Operating Systems | Windows 10, Linux, Kali Linux |
-| Log Sources | Windows Event Logs, Linux Logs, Sysmon |
-| Attack Simulation | Kali Linux |
-| Detection | Wazuh Rules & Custom Rules |
-| Endpoint Monitoring | Wazuh Agent |
-| Threat Intelligence | VirusTotal, AbuseIPDB |
-| Framework | MITRE ATT&CK |
-| Network Analysis | Wireshark |
-| Scripting | PowerShell, Bash, Python |
-
----
-
-## 🔍 SOC Workflow
+## 🧠 SKILLS DEMONSTRATED
 
 ```text
-Attack Simulation
-       ↓
-Log Generation
-       ↓
-Wazuh Agent
-       ↓
-Wazuh Server
-       ↓
-Security Alert
-       ↓
-Investigation
-       ↓
-Detection Engineering
-       ↓
-Response
-       ↓
-Incident Documentation
+[■■■■■■■■■■] SIEM deployment & configuration
+[■■■■■■■■■■] Log analysis (Windows / Linux)
+[■■■■■■■■■□] Custom detection rule engineering
+[■■■■■■■■■□] Network traffic & PCAP analysis
+[■■■■■■■■□□] Memory forensics
+[■■■■■■■■■□] Phishing triage & IOC extraction
+[■■■■■■■■■□] MITRE ATT&CK mapping
+[■■■■■■■■■□] Incident response documentation
 ```
 
 ---
 
-## 📂 Project Structure
+## 🔄 HOW I WORK
+
+Every investigation follows the same repeatable workflow:
 
 ```text
-SOC-Home-Lab/
-│
-├── 00-Lab-Architecture/
-│   ├── README.md
-│   └── screenshots/
-│
-├── 01-Windows-Security-Monitoring/
-│
-├── 02-Linux-Security-Monitoring/
-│
-├── 03-Wazuh-Detection-Engineering/
-│
-├── 04-Windows-User-Account-Management/
-│
-└── README.md
+ COLLECT ──► TRIAGE ──► ANALYZE ──► CORRELATE ──► DETECT ──► RESPOND ──► REPORT
 ```
 
-- [`00-Lab-Architecture/`](./SOC-Home-Lab/00-Lab-Architecture) — network diagram, VM specs, and build notes
-- [`01-Windows-Security-Monitoring/`](./SOC-Home-Lab/01-Windows-Security-Monitoring) — Windows Event Log analysis, Sysmon config, brute-force & PowerShell detections
-- [`02-Linux-Security-Monitoring/`](./SOC-Home-Lab/02-Linux-Security-Monitoring) — SSH attack detection, suspicious command monitoring
-- [`03-Wazuh-Detection-Engineering/`](./SOC-Home-Lab/03-Wazuh-Detection-Engineering) — custom rule development and testing
-- [`04-Windows-User-Account-Management/`](./SOC-Home-Lab/04-Windows-User-Account-Management) — account creation/modification monitoring and related detections
+Each write-up ships with **evidence** (screenshots, logs, captures), **IOCs**, **MITRE mapping**, and **findings**, so any reviewer can follow the reasoning, not just the conclusion.
 
 ---
 
-## 🖥️ Lab Environment
+## 🗂️ REPOSITORY STRUCTURE
 
-### Wazuh Server
-- Linux
-- Wazuh Manager
-- Wazuh Dashboard
-- Centralized security monitoring
-
-### Windows Endpoint
-- Windows 10
-- Wazuh Agent
-- Sysmon
-- Windows Security Event Logs
-- Endpoint security monitoring
-
-### Attacker Machine
-- Kali Linux
-- Controlled attack simulations
-
-### Linux Endpoint
-- Ubuntu/Linux Wazuh Agent
-- Linux attack detection
-- Custom Wazuh detection rules
+```text
+SOC-Portfolio/
+│
+├── SOC-Home-Lab/               → Wazuh SIEM, endpoint monitoring, custom rules
+├── 02-PCAP-Analysis/           → Network forensics & traffic investigation
+├── 03-Memory-Forensics/        → Volatile memory analysis
+├── 04-Phising-Email-Analysis/  → Email threat investigation
+└── README.md                   → You are here
+```
 
 ---
 
-## 🚨 Security Detection Labs
+## 🚀 ROADMAP
 
-Practical security scenarios documented in this repository include:
-
-- Windows authentication attacks
-- Brute-force detection
-- Suspicious PowerShell activity
-- File integrity monitoring
-- Windows Event Log analysis
-- Linux SSH attacks
-- Suspicious Linux commands
-- Custom Wazuh detection rules
-- IOC investigation
-- Incident response
-
----
-
-## 🔬 Sample Investigation
-
-
-**Scenario:** SSH Brute-Force Attempt Against Linux Endpoint
-**MITRE ATT&CK:** [T1110 – Brute Force](https://attack.mitre.org/techniques/T1110/)
-
-| Step | Detail |
-|---|---|
-| Trigger | Repeated failed SSH logins from Kali attacker IP |
-| Detection | Wazuh rule `5716` (SSHD authentication failure) correlated across threshold |
-| Alert Level | 10 |
-| Response | IP blocked via `active-response`, account lockout verified |
-| Evidence | `screenshots/ssh-bruteforce-alert.png` |
-
----
-
-## 📊 Evidence
-
-Each investigation folder contains supporting evidence such as:
-
-- Attacker machine screenshots
-- Target machine screenshots
-- Wazuh alerts
-- Event logs
-- Detection rules
-- Investigation findings
-- MITRE ATT&CK mapping
-- Incident reports
-
----
-
-## 🧠 Skills Demonstrated
-
-- SIEM deployment and configuration (Wazuh Manager, Dashboard, Agents)
-- Windows and Linux log analysis
-- Custom detection rule authoring and testing
-- Attack simulation and controlled adversary emulation
-- Alert triage and investigation
-- MITRE ATT&CK technique mapping
-- Incident response documentation
-- Scripting for automation (PowerShell, Bash, Python)
-
----
-
-## 🗺️ Roadmap
-
-- [ ] Complete Windows Security Monitoring write-ups
-- [ ] Complete Linux Security Monitoring write-ups
+- [x] Wazuh SOC home lab (Windows + Linux + Kali)
+- [x] PCAP analysis investigations
+- [x] Memory forensics investigations
+- [x] Phishing email analysis
 - [ ] Publish custom Wazuh detection rule library
-- [ ] Add File Integrity Monitoring (FIM) lab
-- [ ] Add threat intel enrichment (VirusTotal / AbuseIPDB integration)
+- [ ] File Integrity Monitoring lab
+- [ ] Threat-intel enrichment (VirusTotal / AbuseIPDB integration)
+- [ ] Log analysis & threat hunting with Splunk / ELK
+- [ ] Full end-to-end incident response case study
 
 ---
 
-## ⚠️ Disclaimer
+## 📡 CONNECT
 
-All attack simulations documented in this repository are performed in an isolated home lab environment for educational and defensive security research purposes.
+<div align="center">
+
+[![GitHub](https://img.shields.io/badge/GitHub-JeelAnghanSec-181717?style=for-the-badge&logo=github)](https://github.com/JeelAnghanSec)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/YOUR-LINKEDIN)
+[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:YOUR-EMAIL@example.com)
+
+**Open to SOC Analyst (L1) and Blue Team opportunities.**
+
+</div>
+
+---
+
+## ⚠️ DISCLAIMER
+
+All work in this repository is performed in isolated lab environments or on sanitized samples, strictly for **educational and defensive security purposes**. No real systems, networks, or individuals were targeted.
+
+<div align="center">
+
+`> stay curious. stay defensive. keep hunting._`
+
+</div>
