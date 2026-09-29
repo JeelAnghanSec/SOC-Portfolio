@@ -12,13 +12,15 @@ R E V E A L  L A B
 M E M O R Y  F O R E N S I C S
 </pre>
 
-</div>
+<h3>🧠 CyberDefenders | Memory Forensics with Volatility3</h3>
 
-![Platform](https://img.shields.io/badge/Platform-CyberDefenders-orange)
-![Tool](https://img.shields.io/badge/Tool-Volatility_3%20%7C%20MemProcFS-1679A7)
-![Malware](https://img.shields.io/badge/Malware_Family-StrelaStealer-red)
-![Category](https://img.shields.io/badge/Category-Endpoint_Forensics-blue)
-![Difficulty](https://img.shields.io/badge/Difficulty-Easy-brightgreen)
+<img src="https://img.shields.io/badge/Platform-CyberDefenders-orange" />
+<img src="https://img.shields.io/badge/Tool-Volatility%203%20%7C%20MemProcFS-blue" />
+<img src="https://img.shields.io/badge/Malware%20Family-StrelaStealer-red" />
+<img src="https://img.shields.io/badge/Category-Endpoint%20Forensics-007EC6" />
+<img src="https://img.shields.io/badge/Difficulty-Easy-brightgreen" />
+
+</div>
 
 # Memory Forensics – Reveal Lab (Multi-Stage StrelaStealer Compromise)
 
