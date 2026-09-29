@@ -1,11 +1,30 @@
-# 🔴 RedLine Lab — Memory Forensics with Volatility3
+<div align="center">
 
-> Uncovering a malware infection chain, C2 infrastructure, and stealth VPN-based exfiltration from a raw Windows memory dump.
+<pre align="center">
+██████╗ ███████╗██████╗ ██╗     ██╗███╗   ██╗███████╗
+██╔══██╗██╔════╝██╔══██╗██║     ██║████╗  ██║██╔════╝
+██████╔╝█████╗  ██║  ██║██║     ██║██╔██╗ ██║█████╗
+██╔══██╗██╔══╝  ██║  ██║██║     ██║██║╚██╗██║██╔══╝
+██║  ██║███████╗██████╔╝███████╗██║██║ ╚████║███████╗
+╚═╝  ╚═╝╚══════╝╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝
 
-![Category](https://img.shields.io/badge/Category-Endpoint%20Forensics-blue)
-![Difficulty](https://img.shields.io/badge/Difficulty-Easy-brightgreen)
-![Platform](https://img.shields.io/badge/Platform-CyberDefenders-purple)
-![Status](https://img.shields.io/badge/Status-Completed%20(7%2F7)-success)
+R E D L I N E  L A B
+M E M O R Y  F O R E N S I C S
+</pre>
+
+<h3>🔴 CyberDefenders | Memory Forensics with Volatility3</h3>
+
+<img src="https://img.shields.io/badge/Platform-CyberDefenders-orange" />
+<img src="https://img.shields.io/badge/Tool-Volatility3-blue" />
+<img src="https://img.shields.io/badge/Category-Endpoint%20Forensics-007EC6" />
+<img src="https://img.shields.io/badge/Difficulty-Easy-brightgreen" />
+<img src="https://img.shields.io/badge/Status-Completed-success" />
+
+<br><br>
+
+<b>🧠 MEMORY DUMP ACQUIRED... TRACING INFECTION CHAIN...</b>
+
+</div>
 
 ---
 
