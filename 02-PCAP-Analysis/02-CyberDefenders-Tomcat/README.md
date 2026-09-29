@@ -1,10 +1,29 @@
-# 🐱 Tomcat Takeover — Network Forensics Investigation
+<div align="center">
 
-![Category](https://img.shields.io/badge/Category-Network%20Forensics-blueviolet)
-![Difficulty](https://img.shields.io/badge/Difficulty-Easy-brightgreen)
-![Platform](https://img.shields.io/badge/Platform-CyberDefenders-orange)
-![Tools](https://img.shields.io/badge/Tools-Wireshark%20%7C%20NetworkMiner%20%7C%20CyberChef-informational)
-![Status](https://img.shields.io/badge/Status-Solved%20(8%2F8)-success)
+<pre align="center">
+████████╗ ██████╗ ███╗   ███╗ ██████╗ █████╗ ████████╗
+╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗╚══██╔══╝
+   ██║   ██║   ██║██╔████╔██║██║     ███████║   ██║
+   ██║   ██║   ██║██║╚██╔╝██║██║     ██╔══██║   ██║
+   ██║   ╚██████╔╝██║ ╚═╝ ██║╚██████╗██║  ██║   ██║
+   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝
+T O M C A T T A K E O V E R  
+•  N E T W O R K  F O R E N S I C S
+</pre>
+
+<h3>🛡️ CyberDefenders | Network Forensics Investigation</h3>
+
+<img src="https://img.shields.io/badge/Platform-CyberDefenders-orange" />
+<img src="https://img.shields.io/badge/Tools-Wireshark%20%7C%20NetworkMiner%20%7C%20CyberChef-blue" />
+<img src="https://img.shields.io/badge/Category-Network%20Forensics-007EC6" />
+<img src="https://img.shields.io/badge/Difficulty-Easy-brightgreen" />
+<img src="https://img.shields.io/badge/Status-Solved-success" />
+
+<br><br>
+
+<b>🔎 NETWORK TRAFFIC DETECTED... INVESTIGATION IN PROGRESS...</b>
+
+</div>
 
 > **Lab:** [Tomcat Takeover Lab](https://cyberdefenders.org/) — Practice → SOC Analyst Tier 1 → Level 2
 > **Scenario:** Analyze network traffic using Wireshark's custom columns, filters, and statistics to identify suspicious web server administration access and a potential full compromise of an Apache Tomcat server.
