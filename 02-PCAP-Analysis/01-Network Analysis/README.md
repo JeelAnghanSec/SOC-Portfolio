@@ -1,9 +1,32 @@
+<div align="center">
 
-![Platform](https://img.shields.io/badge/Platform-BlueTeamLabsOnline-orange)
-![Tool](https://img.shields.io/badge/Tool-Wireshark-1679A7)
-![Malware](https://img.shields.io/badge/Malware_Family-Ursnif_%2F_Dridex-red)
-![Category](https://img.shields.io/badge/Category-Network_Forensics-blue)
-![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
+<pre align="center">
+██████╗ ██╗     ██╗   ██╗███████╗    ████████╗███████╗ █████╗ ███╗   ███╗
+██╔══██╗██║     ██║   ██║██╔════╝    ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║
+██████╔╝██║     ██║   ██║█████╗         ██║   █████╗  ███████║██╔████╔██║
+██╔══██╗██║     ██║   ██║██╔══╝         ██║   ██╔══╝  ██╔══██║██║╚██╔╝██║
+██████╔╝███████╗╚██████╔╝███████╗       ██║   ███████╗██║  ██║██║ ╚═╝ ██║
+╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
+
+             L A B S   O N L I N E
+
+     N E T W O R K   A N A L Y S I S
+        M A L W A R E   C O M P R O M I S E
+</pre>
+
+<h3>🛡️ Network Forensics | Malware Traffic Analysis | PCAP Investigation</h3>
+
+<img src="https://img.shields.io/badge/PLATFORM-Blue_Team_Labs_Online-007ACC?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/DIFFICULTY-MEDIUM-yellow?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/CATEGORY-NETWORK_FORENSICS-purple?style=for-the-badge"/>
+<br/><br/>
+<img src="https://img.shields.io/badge/TOOL-WIRESHARK-blue"/>
+<img src="https://img.shields.io/badge/TOOL-VIRUSTOTAL-green"/>
+<img src="https://img.shields.io/badge/TOOL-POWERSHELL-5391FE"/>
+<img src="https://img.shields.io/badge/MALWARE-URSNIF_/_DRIDEX-red"/>
+<br/><br/>
+<code>🔎 MALICIOUS TRAFFIC DETECTED... INITIATING PACKET ANALYSIS...</code>
+</div>
 
 # Network Analysis – Malware Compromise
 
