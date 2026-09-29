@@ -1,4 +1,18 @@
+<div align="center">
 
+<pre align="center">
+██████╗ ███████╗██╗   ██╗███████╗ █████╗ ██╗     
+██╔══██╗██╔════╝██║   ██║██╔════╝██╔══██╗██║     
+██████╔╝█████╗  ██║   ██║█████╗  ███████║██║     
+██╔══██╗██╔══╝  ╚██╗ ██╔╝██╔══╝  ██╔══██║██║     
+██║  ██║███████╗ ╚████╔╝ ███████╗██║  ██║███████╗
+╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝
+
+R E V E A L  L A B
+M E M O R Y  F O R E N S I C S
+</pre>
+
+</div>
 
 ![Platform](https://img.shields.io/badge/Platform-CyberDefenders-orange)
 ![Tool](https://img.shields.io/badge/Tool-Volatility_3%20%7C%20MemProcFS-1679A7)
