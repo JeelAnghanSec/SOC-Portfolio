@@ -1,7 +1,6 @@
-
 <div align="center">
 
-```
+<pre align="center">
  ████████╗██╗  ██╗███████╗    ██████╗ ██╗      █████╗ ███╗   ██╗███████╗████████╗
  ╚══██╔══╝██║  ██║██╔════╝    ██╔══██╗██║     ██╔══██╗████╗  ██║██╔════╝╚══██╔══╝
     ██║   ███████║█████╗      ██████╔╝██║     ███████║██╔██╗ ██║█████╗     ██║
@@ -9,8 +8,9 @@
     ██║   ██║  ██║███████╗    ██║     ███████╗██║  ██║██║ ╚████║███████╗   ██║
     ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝
                          P  R  E  S  T  I  G  E
-```
+</pre>
 
+</div>
 ### 🛰️ Email Forensics · Phishing Analysis · Digital Steganography
 
 ![Platform](https://img.shields.io/badge/Platform-Blue%20Team%20Labs%20Online-0A84FF?style=for-the-badge&logo=hackthebox&logoColor=white)
