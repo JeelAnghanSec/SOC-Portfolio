@@ -1,9 +1,24 @@
+<div align="center">
+
+<pre align="center">
+ ██████╗██╗   ██╗██████╗ ███████╗██████╗ ██████╗ ███████╗███████╗███╗   ██╗██████╗ ███████╗██████╗ 
+██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗██╔════╝ ██╔════╝██╔════╝████╗  ██║██╔══██╗██╔════╝██╔══██╗
+██║      ╚████╔╝ ██████╔╝█████╗  ██║  ██║██║  ███╗█████╗  █████╗  ██╔██╗ ██║██║  ██║█████╗  ██████╔╝
+██║       ╚██╔╝  ██╔══██╗██╔══╝  ██║  ██║██║   ██║██╔══╝  ██╔══╝  ██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗
+╚██████╗   ██║   ██████╔╝███████╗██████╔╝╚██████╔╝███████╗███████╗██║ ╚████║██████╔╝███████╗██║  ██║
+ ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝
+
+                              P H I S H S T R I K E
+</pre>
+
+</div>
+
 
 <div align="center">
 
 # 🎣 PhishStrike — Phishing Email & Malware C2 Investigation
 
-### SOC Analyst Tier 2 | CyberDefenders CyberRange
+### SOC Analyst | CyberDefenders CyberRange
 
 ![Category](https://img.shields.io/badge/Category-Threat%20Intel-blue)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-orange)
