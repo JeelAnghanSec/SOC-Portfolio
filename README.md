@@ -6,11 +6,11 @@
 **Jeel Anghan** · Aspiring SOC Analyst · Blue Team · Detection Engineering · DFIR
 
 ![Focus](https://img.shields.io/badge/focus-Blue%20Team%20%7C%20DFIR-red?style=for-the-badge)
-![SIEM](https://img.shields.io/badge/SIEM-Wazuh-005571?style=for-the-badge)
+![SIEM](https://img.shields.io/badge/SIEM-Splunk%20%7C%20Wazuh-005571?style=for-the-badge)
 ![Framework](https://img.shields.io/badge/MITRE-ATT%26CK-orange?style=for-the-badge)
 ![Status](https://img.shields.io/badge/status-actively%20building-brightgreen?style=for-the-badge)
 
-*Four disciplines. One analyst mindset. Every project is hands-on, evidence-backed, and mapped to how real SOC teams work.*
+*Five disciplines. One analyst mindset. Every project is hands-on, evidence-backed, and mapped to how real SOC teams work.*
 
 </div>
 
@@ -18,16 +18,17 @@
 
 ## 🧭 MISSION BRIEF
 
-A SOC analyst doesn't just watch alerts. They **see the attack on the wire, find it in memory, catch it in the inbox, and build the detection that stops it next time.**
+A SOC analyst doesn't just watch alerts. They **hunt through logs, see the attack on the wire, find it in memory, catch it in the inbox, and build the detection that stops it next time.**
 
 This portfolio is built around exactly that. It moves through the full investigation surface of a modern SOC:
 
 | Layer | Question it answers | Where |
 |---|---|---|
-| 🖥️ **Endpoint & SIEM** | *What is happening on my machines right now?* | [SOC-Home-Lab](./SOC-Home-Lab) |
+| 📊 **Log Analysis & SIEM** | *What do the logs say happened, and can I prove it with a query?* | [01-Splunk-SIEM-Investigations](./01-Splunk-SIEM-Investigations) |
 | 🌐 **Network** | *What did the attacker send across the wire?* | [02-PCAP-Analysis](./02-PCAP-Analysis) |
 | 🧠 **Memory** | *What is hiding where disk forensics can't see?* | [03-Memory-Forensics](./03-Memory-Forensics) |
 | 📧 **Email** | *How did they get in through the front door?* | [04-Phising-Email-Analysis](./04-Phising-Email-Analysis) |
+| 🖥️ **Endpoint & Detection** | *What is happening on my machines right now, and how do I alert on it?* | [SOC-Home-Lab](./SOC-Home-Lab) |
 
 ---
 
@@ -38,7 +39,7 @@ flowchart LR
     P["📧 Phishing<br/>Initial Access"] --> E["🖥️ Endpoint<br/>Execution & Persistence"]
     E --> N["🌐 Network<br/>C2 & Exfiltration"]
     E --> M["🧠 Memory<br/>In-RAM Artifacts"]
-    N --> S["📊 SIEM<br/>Wazuh Correlation"]
+    N --> S["📊 SIEM<br/>Splunk Log Analysis<br/>Wazuh Correlation"]
     M --> S
     E --> S
     S --> R["🚨 Triage → Response → Report"]
@@ -61,15 +62,14 @@ flowchart LR
 
 ## 📦 PROJECT MODULES
 
-### 🖥️ [SOC Home Lab](./SOC-Home-Lab) `// endpoint monitoring · SIEM · detection engineering`
-A small simulated enterprise: **Kali** attacks, **Windows 10** and **Ubuntu** endpoints report to a central **Wazuh** server.
-- Wazuh Manager, Dashboard, and Agents deployed on an isolated network
-- Windows Event Logs and Sysmon telemetry, plus Linux log monitoring
-- Attack simulation: brute force, suspicious PowerShell, SSH attacks
-- Custom Wazuh detection rules mapped to MITRE ATT&CK
-- Alert triage, IOC investigation, and incident documentation
+### 📊 [01 · Splunk SIEM Investigations](./01-Splunk-SIEM-Investigations) `// log analysis · SPL · threat hunting`
+Where the investigation starts for most SOC analysts: the SIEM. Raw logs are ingested, searched, and turned into a clear story of what happened.
+- Log analysis using **Splunk** and **SPL** (Search Processing Language)
+- Searching, filtering, and correlating events to find suspicious activity
+- Building timelines and identifying indicators of compromise from log data
+- Documenting findings as investigation write-ups
 
-**Tools:** `Wazuh` `Sysmon` `Kali Linux` `PowerShell` `Bash`
+**Tools:** `Splunk` `SPL` `Log Analysis`
 
 ---
 
@@ -106,6 +106,18 @@ Most breaches begin with one email. Suspicious messages are dissected end to end
 
 ---
 
+### 🖥️ [SOC Home Lab](./SOC-Home-Lab) `// endpoint monitoring · SIEM · detection engineering`
+A small simulated enterprise: **Kali** attacks, **Windows 10** and **Ubuntu** endpoints report to a central **Wazuh** server.
+- Wazuh Manager, Dashboard, and Agents deployed on an isolated network
+- Windows Event Logs and Sysmon telemetry, plus Linux log monitoring
+- Attack simulation: brute force, suspicious PowerShell, SSH attacks
+- Custom Wazuh detection rules mapped to MITRE ATT&CK
+- Alert triage, IOC investigation, and incident documentation
+
+**Tools:** `Wazuh` `Sysmon` `Kali Linux` `PowerShell` `Bash`
+
+---
+
 ## 🎯 MITRE ATT&CK COVERAGE
 
 | Tactic | Technique | Explored In |
@@ -124,7 +136,7 @@ Most breaches begin with one email. Suspicious messages are dissected end to end
 
 | Domain | Stack |
 |---|---|
-| **SIEM / XDR** | Wazuh (Manager, Dashboard, Agents) |
+| **SIEM / XDR** | Splunk (SPL searches, log investigation), Wazuh (Manager, Dashboard, Agents) |
 | **Endpoint Telemetry** | Sysmon, Windows Event Logs, Linux Logs |
 | **Network** | Wireshark |
 | **Threat Intel** | VirusTotal, AbuseIPDB |
@@ -138,6 +150,7 @@ Most breaches begin with one email. Suspicious messages are dissected end to end
 
 ```text
 [■■■■■■■■■■] SIEM deployment & configuration
+[■■■■■■■■■□] Splunk log analysis & SPL searching
 [■■■■■■■■■■] Log analysis (Windows / Linux)
 [■■■■■■■■■□] Custom detection rule engineering
 [■■■■■■■■■□] Network traffic & PCAP analysis
@@ -166,25 +179,27 @@ Each write-up ships with **evidence** (screenshots, logs, captures), **IOCs**, *
 ```text
 SOC-Portfolio/
 │
-├── SOC-Home-Lab/               → Wazuh SIEM, endpoint monitoring, custom rules
-├── 02-PCAP-Analysis/           → Network forensics & traffic investigation
-├── 03-Memory-Forensics/        → Volatile memory analysis
-├── 04-Phising-Email-Analysis/  → Email threat investigation
-└── README.md                   → You are here
+├── 01-Splunk-SIEM-Investigations/  → Log analysis & threat hunting with Splunk
+├── 02-PCAP-Analysis/               → Network forensics & traffic investigation
+├── 03-Memory-Forensics/            → Volatile memory analysis
+├── 04-Phising-Email-Analysis/      → Email threat investigation
+├── SOC-Home-Lab/                   → Wazuh SIEM, endpoint monitoring, custom rules
+└── README.md                       → You are here
 ```
 
 ---
 
 ## 🚀 ROADMAP
 
-- [x] Wazuh SOC home lab (Windows + Linux + Kali)
+- [x] Splunk SIEM log analysis investigations
 - [x] PCAP analysis investigations
 - [x] Memory forensics investigations
 - [x] Phishing email analysis
+- [x] Wazuh SOC home lab (Windows + Linux + Kali)
 - [ ] Publish custom Wazuh detection rule library
 - [ ] File Integrity Monitoring lab
 - [ ] Threat-intel enrichment (VirusTotal / AbuseIPDB integration)
-- [ ] Log analysis & threat hunting with Splunk / ELK
+- [ ] Threat hunting with ELK
 - [ ] Full end-to-end incident response case study
 
 ---
@@ -194,7 +209,7 @@ SOC-Portfolio/
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-JeelAnghanSec-181717?style=for-the-badge&logo=github)](https://github.com/JeelAnghanSec)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/YOUR-LINKEDIN)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](www.linkedin.com/in/jeel-anghan-3b443534a)
 [![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:YOUR-EMAIL@example.com)
 
 **Open to SOC Analyst (L1) and Blue Team opportunities.**
