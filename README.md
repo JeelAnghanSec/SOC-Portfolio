@@ -209,7 +209,7 @@ SOC-Portfolio/
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-JeelAnghanSec-181717?style=for-the-badge&logo=github)](https://github.com/JeelAnghanSec)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](www.linkedin.com/in/jeel-anghan-3b443534a)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/jeel-anghan-3b443534a/)
 [![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:YOUR-EMAIL@example.com)
 
 **Open to SOC Analyst (L1) and Blue Team opportunities.**
