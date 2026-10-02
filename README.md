@@ -1,28 +1,26 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:00f5ff,40:7b2ff7,100:ff00c8&height=280&section=header&text=SOC%20PORTFOLIO&fontSize=70&fontColor=ffffff&animation=twinkling&fontAlignY=38&desc=DETECT%20%E2%80%A2%20INVESTIGATE%20%E2%80%A2%20RESPOND%20%E2%80%A2%20DOCUMENT&descAlignY=60&descSize=16" width="100%"/>
-
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=700&size=22&duration=2800&pause=700&color=00F5FF&center=true&vCenter=true&width=760&height=50&lines=%3E+operator%3A+Jeel+Anghan;%3E+role%3A+Aspiring+SOC+Analyst+%7C+Blue+Team;%3E+modules+loaded%3A+SIEM+%7C+PCAP+%7C+RAM+%7C+EMAIL+%7C+ENDPOINT;%3E+status%3A+HUNTING+MODE+ENGAGED" alt="typing"/></a>
+<img src="assets/banner.svg" width="100%" alt="SOC Portfolio banner">
 
 <br>
 
 ![Focus](https://img.shields.io/badge/FOCUS-BLUE%20TEAM%20%7C%20DFIR-ff3b3b?style=for-the-badge&labelColor=0a0e17)
-![SIEM](https://img.shields.io/badge/SIEM-SPLUNK%20%7C%20WAZUH-00f5ff?style=for-the-badge&labelColor=0a0e17)
-![MITRE](https://img.shields.io/badge/MAPPED-MITRE%20ATT%26CK-ff9f1c?style=for-the-badge&labelColor=0a0e17)
+![SIEM](https://img.shields.io/badge/SIEM-SPLUNK%20%7C%20WAZUH-00c8ff?style=for-the-badge&labelColor=0a0e17)
+![MITRE](https://img.shields.io/badge/MAPPED-MITRE%20ATT%26CK-ffb703?style=for-the-badge&labelColor=0a0e17)
 ![Status](https://img.shields.io/badge/STATUS-ACTIVELY%20BUILDING-39ff14?style=for-the-badge&labelColor=0a0e17)
 
 <br>
 
-**[ Mission ](#-mission-brief) · [ Kill Chain ](#-the-investigation-map) · [ Modules ](#-project-modules) · [ ATT&CK ](#-mitre-attck-coverage) · [ Roadmap ](#-roadmap) · [ Connect ](#-connect)**
+**[Mission](#-mission-brief) · [Attack Chain](#-the-investigation-map) · [Modules](#-project-modules) · [Home Lab](#-soc-home-lab-in-detail) · [ATT&CK](#-mitre-attck-coverage) · [Roadmap](#-roadmap) · [Connect](#-connect)**
 
 <br>
 
 *Five disciplines. One analyst mindset.*
-*Every project is hands-on, evidence-backed, and mapped to how real SOC teams work.*
+*Every project is hands-on, evidence-backed and mapped to how real SOC teams work.*
 
 </div>
 
----
+<img src="assets/divider.svg" width="100%" alt="divider">
 
 ## 🛰️ MISSION BRIEF
 
@@ -41,7 +39,7 @@ This portfolio walks the **full investigation surface of a modern SOC**:
 </tr>
 </table>
 
----
+<img src="assets/divider.svg" width="100%" alt="divider">
 
 ## 🧬 THE INVESTIGATION MAP
 
@@ -69,7 +67,7 @@ flowchart LR
     class R resp;
 ```
 
----
+<img src="assets/divider.svg" width="100%" alt="divider">
 
 ## 🚀 PROJECT MODULES
 
@@ -89,12 +87,11 @@ flowchart LR
 <summary><b>📊 &nbsp;01 · Splunk SIEM Investigations</b> &nbsp;<code>// log analysis · SPL · threat hunting</code></summary>
 <br>
 
-Where the investigation starts for most SOC analysts: the SIEM. Raw logs are ingested, searched, and turned into a clear story of what happened.
+Where most SOC investigations start: raw logs ingested, searched and turned into a clear story of what happened.
 
-- Log analysis using **Splunk** and **SPL** (Search Processing Language)
-- Searching, filtering, and correlating events to find suspicious activity
-- Building timelines and identifying indicators of compromise from log data
-- Documenting findings as investigation write-ups
+- [Hack The Box: Unit42](./01-Splunk-SIEM-Investigations/01-Hack-The-Box-Unit42)
+- [Hack The Box: LogJammer](./01-Splunk-SIEM-Investigations/02-Hack-The-Box-%20LogJammer)
+- Searching, filtering and correlating events with **SPL**, building timelines and extracting IOCs
 
 </details>
 
@@ -102,12 +99,11 @@ Where the investigation starts for most SOC analysts: the SIEM. Raw logs are ing
 <summary><b>🌐 &nbsp;02 · PCAP Analysis</b> &nbsp;<code>// network forensics</code></summary>
 <br>
 
-Reading the network like a crime scene. Packet captures are analyzed to reconstruct what happened, who talked to whom, and what left the building.
+Reading the network like a crime scene: who talked to whom, and what left the building.
 
-- Traffic triage and protocol analysis
-- Identifying suspicious hosts, connections, and payloads
-- Extracting IOCs (IPs, domains, file hashes) from traffic
-- Timeline reconstruction of network-based incidents
+- [Network Analysis](./02-PCAP-Analysis/01-Network%20Analysis)
+- [CyberDefenders: Tomcat](./02-PCAP-Analysis/02-CyberDefenders-Tomcat)
+- Protocol analysis, suspicious host and payload identification, IOC extraction
 
 </details>
 
@@ -115,12 +111,11 @@ Reading the network like a crime scene. Packet captures are analyzed to reconstr
 <summary><b>🧠 &nbsp;03 · Memory Forensics</b> &nbsp;<code>// volatile evidence</code></summary>
 <br>
 
-Attackers can avoid the disk, but they can't avoid RAM. Memory images are examined for evidence of malicious activity that leaves little or no trace elsewhere.
+Attackers can avoid the disk, but not RAM. Memory images are examined for activity that leaves little trace elsewhere.
 
-- Process and network-connection analysis from memory dumps
-- Hunting for suspicious or injected processes
-- Recovering artifacts and indicators from volatile memory
-- Documenting findings as an investigation report
+- [CyberDefenders: Reveal Lab](./03-Memory-Forensics/01-CyberDefenders-Reveal-Lab)
+- [CyberDefenders: RedLine Lab](./03-Memory-Forensics/02-CyberDefenders-RedLine-Lab)
+- Process and network-connection analysis, injected process hunting, artifact recovery
 
 </details>
 
@@ -130,28 +125,48 @@ Attackers can avoid the disk, but they can't avoid RAM. Memory images are examin
 
 Most breaches begin with one email. Suspicious messages are dissected end to end and classified with evidence.
 
-- Email header analysis (sender path, SPF / DKIM / DMARC results)
-- URL and attachment inspection
-- IOC extraction and reputation checks
-- Verdict, impact assessment, and recommended response actions
+- [CyberDefenders: PhishStrike](./04-Phising-Email-Analysis/01-CyberDefender-PhishStrike)
+- [BTLO: The Planets Prestige](./04-Phising-Email-Analysis/02-BTLO-ThePlanetsPrestige)
+- Header analysis (SPF / DKIM / DMARC), URL and attachment inspection, reputation checks, verdict and response actions
 
 </details>
 
 <details>
-<summary><b>🖥️ &nbsp;05 · SOC Home Lab</b> &nbsp;<code>// endpoint monitoring · SIEM · detection engineering</code></summary>
+<summary><b>🖥️ &nbsp;05 · SOC Home Lab</b> &nbsp;<code>// endpoint monitoring · detection engineering</code></summary>
 <br>
 
-A small simulated enterprise: **Kali** attacks, **Windows 10** and **Ubuntu** endpoints report to a central **Wazuh** server.
-
-- Wazuh Manager, Dashboard, and Agents deployed on an isolated network
-- Windows Event Logs and Sysmon telemetry, plus Linux log monitoring
-- Attack simulation: brute force, suspicious PowerShell, SSH attacks
-- Custom Wazuh detection rules mapped to MITRE ATT&CK
-- Alert triage, IOC investigation, and incident documentation
+A small simulated enterprise: **Kali** attacks, **Windows 10** and **Ubuntu** endpoints report to a central **Wazuh** server. Full breakdown in the next section.
 
 </details>
 
----
+<img src="assets/divider.svg" width="100%" alt="divider">
+
+## 🖥️ SOC HOME LAB IN DETAIL
+
+An isolated lab where attacks are simulated, detected, investigated and documented, the same loop a real SOC runs every day.
+
+```text
+   ┌──────────────┐      attacks      ┌─────────────────────────┐
+   │  Kali Linux  │ ────────────────▶ │ Windows 10  │  Ubuntu   │
+   │  (attacker)  │                   │ Sysmon+Agent│  Agent    │
+   └──────────────┘                   └────────────┬────────────┘
+                                                   │ telemetry
+                                         ┌─────────▼─────────┐
+                                         │ Wazuh Manager +   │
+                                         │ Dashboard (SIEM)  │
+                                         └───────────────────┘
+```
+
+| # | LAB MODULE | WHAT IT COVERS |
+|:--:|:--|:--|
+| `00` | [**Lab Architecture**](./SOC-Home-Lab/00-Lab-Architecture) | Network design, VM roles, Wazuh Manager / Dashboard / Agent deployment |
+| `01` | [**Windows Security Monitoring**](./SOC-Home-Lab/01-Windows-Security-Monitoring) | Windows Event Logs and Sysmon telemetry, suspicious PowerShell, brute force detection |
+| `02` | [**Linux Security Monitoring**](./SOC-Home-Lab/02-Linux-Security-Monitoring) | Linux log monitoring, SSH attack detection and investigation |
+| `03` | [**Wazuh Detection Engineering**](./SOC-Home-Lab/03-Wazuh-Detection-Engineering) | Custom Wazuh rules mapped to MITRE ATT&CK |
+| `04` | [**Windows User Account Management**](./SOC-Home-Lab/04-Windows-User-Account-Management) | Monitoring account creation, changes and privilege activity |
+| `05` | [**Wazuh File Integrity Monitoring**](./SOC-Home-Lab/05-Wazuh-File-Integrity-Monitoring) | Detecting unauthorized file changes on monitored endpoints |
+
+<img src="assets/divider.svg" width="100%" alt="divider">
 
 ## 🎯 MITRE ATT&CK COVERAGE
 
@@ -165,7 +180,7 @@ A small simulated enterprise: **Kali** attacks, **Windows 10** and **Ubuntu** en
 
 <sub>*The table grows as new investigations are documented.*</sub>
 
----
+<img src="assets/divider.svg" width="100%" alt="divider">
 
 ## 🧰 ARSENAL
 
@@ -180,13 +195,12 @@ A small simulated enterprise: **Kali** attacks, **Windows 10** and **Ubuntu** en
 ![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![VirusTotal](https://img.shields.io/badge/VirusTotal-394EFF?style=for-the-badge&logo=virustotal&logoColor=white)
-![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-ff3b3b?style=for-the-badge)
 
 </div>
 
 | DOMAIN | STACK |
 |:--|:--|
-| **SIEM / XDR** | Splunk (SPL, log investigation) · Wazuh (Manager, Dashboard, Agents) |
+| **SIEM / XDR** | Splunk (SPL) · Wazuh (Manager, Dashboard, Agents, FIM) |
 | **Endpoint Telemetry** | Sysmon · Windows Event Logs · Linux Logs |
 | **Network** | Wireshark |
 | **Threat Intel** | VirusTotal · AbuseIPDB |
@@ -194,52 +208,32 @@ A small simulated enterprise: **Kali** attacks, **Windows 10** and **Ubuntu** en
 | **Automation** | PowerShell · Bash · Python |
 | **Framework** | MITRE ATT&CK |
 
----
-
-## 🧠 SKILL MATRIX
-
-```text
-SIEM deployment & configuration     ▰▰▰▰▰▰▰▰▰▰  
-Log analysis (Windows / Linux)      ▰▰▰▰▰▰▰▰▰▰  
-Splunk log analysis & SPL           ▰▰▰▰▰▰▰▰▰▱  
-Custom detection rule engineering   ▰▰▰▰▰▰▰▰▰▱  
-Network traffic & PCAP analysis     ▰▰▰▰▰▰▰▰▰▱  
-Phishing triage & IOC extraction    ▰▰▰▰▰▰▰▰▰▱  
-MITRE ATT&CK mapping                ▰▰▰▰▰▰▰▰▰▱  
-Incident response documentation     ▰▰▰▰▰▰▰▰▰▱  
-Memory forensics                    ▰▰▰▰▰▰▰▰▱▱  
-```
-
----
+<img src="assets/divider.svg" width="100%" alt="divider">
 
 ## 🔄 HOW I WORK
 
 Every investigation follows the same repeatable workflow:
 
 ```text
- ┌─────────┐   ┌────────┐   ┌─────────┐   ┌───────────┐   ┌────────┐   ┌─────────┐   ┌────────┐
- │ COLLECT │─▶│ TRIAGE │─▶│ ANALYZE │─▶│ CORRELATE │─▶│ DETECT │─▶│ RESPOND │─▶│ REPORT │
- └─────────┘   └────────┘   └─────────┘   └───────────┘   └────────┘   └─────────┘   └────────┘
+COLLECT ─▶ TRIAGE ─▶ ANALYZE ─▶ CORRELATE ─▶ DETECT ─▶ RESPOND ─▶ REPORT
 ```
 
-Each write-up ships with **evidence** (screenshots, logs, captures), **IOCs**, **MITRE mapping**, and **findings**, so any reviewer can follow the reasoning, not just the conclusion.
-
----
+Each write-up ships with **evidence** (screenshots, logs, captures), **IOCs**, **MITRE mapping** and **findings**, so any reviewer can follow the reasoning, not just the conclusion.
 
 ## 🗂️ REPOSITORY STRUCTURE
 
 ```text
 SOC-Portfolio/
-│
-├── 01-Splunk-SIEM-Investigations/   → Log analysis & threat hunting with Splunk
-├── 02-PCAP-Analysis/                → Network forensics & traffic investigation
-├── 03-Memory-Forensics/             → Volatile memory analysis
-├── 04-Phising-Email-Analysis/       → Email threat investigation
-├── SOC-Home-Lab/                    → Wazuh SIEM, endpoint monitoring, custom rules
+├── 01-Splunk-SIEM-Investigations/   → Unit42 · LogJammer
+├── 02-PCAP-Analysis/                → Network Analysis · Tomcat
+├── 03-Memory-Forensics/             → Reveal · RedLine
+├── 04-Phising-Email-Analysis/       → PhishStrike · The Planets Prestige
+├── SOC-Home-Lab/                    → Architecture · Windows · Linux · Detection Rules · Accounts · FIM
+├── assets/                          → banner and divider
 └── README.md                        → You are here
 ```
 
----
+<img src="assets/divider.svg" width="100%" alt="divider">
 
 ## 🛣️ ROADMAP
 
@@ -248,13 +242,11 @@ SOC-Portfolio/
 - [x] Memory forensics investigations
 - [x] Phishing email analysis
 - [x] Wazuh SOC home lab (Windows + Linux + Kali)
-- [ ] Publish custom Wazuh detection rule library
-- [ ] File Integrity Monitoring lab
+- [x] Custom Wazuh detection engineering
+- [x] File Integrity Monitoring lab
 - [ ] Threat-intel enrichment (VirusTotal / AbuseIPDB integration)
 - [ ] Threat hunting with ELK
 - [ ] Full end-to-end incident response case study
-
----
 
 ## 📡 CONNECT
 
@@ -268,24 +260,14 @@ SOC-Portfolio/
 
 </div>
 
----
-
 ## ⚠️ DISCLAIMER
 
-All work in this repository is performed in isolated lab environments or on sanitized samples, strictly for **educational and defensive security purposes**. No real systems, networks, or individuals were targeted.
+All work in this repository is performed in isolated lab environments or on sanitized samples, strictly for **educational and defensive security purposes**. No real systems, networks or individuals were targeted.
 
 <div align="center">
 
-```text
-╔══════════════════════════════════════════════════╗
-║   > ALERTS TRIAGED ............. ∞               ║
-║   > BLIND SPOTS ................ 0               ║
-║   > OPERATOR STATUS ............ LEARNING 24/7   ║
-╚══════════════════════════════════════════════════╝
-```
+<img src="assets/divider.svg" width="100%" alt="divider">
 
 ### ⚡ *stay curious. stay defensive. keep hunting.* ⚡
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:ff00c8,50:7b2ff7,100:00f5ff&height=120&section=footer" width="100%"/>
 
 </div>
