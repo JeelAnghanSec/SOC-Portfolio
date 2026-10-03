@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="24" viewBox="0 0 1200 24" role="img" aria-label="divider">
+<path d="M0 12H1200" stroke="#5ec8ff" stroke-opacity=".5"/>
+<path d="M0 7V17M20 9.5V14.5M40 9.5V14.5M60 9.5V14.5M80 9.5V14.5M100 7V17M120 9.5V14.5M140 9.5V14.5M160 9.5V14.5M180 9.5V14.5M200 7V17M220 9.5V14.5M240 9.5V14.5M260 9.5V14.5M280 9.5V14.5M300 7V17M320 9.5V14.5M340 9.5V14.5M360 9.5V14.5M380 9.5V14.5M400 7V17M420 9.5V14.5M440 9.5V14.5M460 9.5V14.5M480 9.5V14.5M500 7V17M520 9.5V14.5M540 9.5V14.5M560 9.5V14.5M580 9.5V14.5M600 7V17M620 9.5V14.5M640 9.5V14.5M660 9.5V14.5M680 9.5V14.5M700 7V17M720 9.5V14.5M740 9.5V14.5M760 9.5V14.5M780 9.5V14.5M800 7V17M820 9.5V14.5M840 9.5V14.5M860 9.5V14.5M880 9.5V14.5M900 7V17M920 9.5V14.5M940 9.5V14.5M960 9.5V14.5M980 9.5V14.5M1000 7V17M1020 9.5V14.5M1040 9.5V14.5M1060 9.5V14.5M1080 9.5V14.5M1100 7V17M1120 9.5V14.5M1140 9.5V14.5M1160 9.5V14.5M1180 9.5V14.5M1200 7V17" stroke="#5ec8ff" stroke-opacity=".7" fill="none"/>
+<rect x="540" y="2" width="120" height="20" fill="#061326" stroke="#5ec8ff"/>
+<text x="600" y="16" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="11" letter-spacing="2" fill="#8fd3ff">SOC-HOME-LAB</text>
+<path d="M0 10L-5 2H5Z" fill="#00f5ff"><animateTransform attributeName="transform" type="translate" from="0 0" to="1200 0" dur="6s" repeatCount="indefinite"/></path>
+</svg>
