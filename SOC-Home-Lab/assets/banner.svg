@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-label="SOC Home Lab banner">
+<style>
+.m{font-family:Consolas,'Courier New',monospace}
+.s{font-family:'Segoe UI','Arial Black',Verdana,sans-serif;font-weight:800}
+.t{font-size:15px;fill:#fff}
+.r{font-size:10px;letter-spacing:1.5px}
+.k{font-size:12px;fill:#6fa8cc;letter-spacing:2px}
+.v{font-size:12px;fill:#fff;letter-spacing:1px}
+.g{fill:#39ff14}
+</style>
+<defs>
+<pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#5ec8ff" stroke-opacity=".07"/></pattern>
+<pattern id="g2" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M100 0H0V100" fill="none" stroke="#5ec8ff" stroke-opacity=".14"/></pattern>
+<linearGradient id="sc" x1="0" x2="1"><stop offset="0" stop-color="#00f5ff" stop-opacity="0"/><stop offset="1" stop-color="#00f5ff" stop-opacity=".22"/></linearGradient>
+<filter id="gl" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<path id="aA" d="M190 245H545V200H635"/>
+<path id="aB" d="M190 245H545V290H635"/>
+<path id="tA" d="M765 200H855V245H945"/>
+<path id="tB" d="M765 290H855V245H945"/>
+</defs>
+<rect width="1200" height="340" fill="#061326"/>
+<rect width="1200" height="340" fill="url(#g1)"/>
+<rect width="1200" height="340" fill="url(#g2)"/>
+<rect x="10" y="10" width="1180" height="320" fill="none" stroke="#5ec8ff" stroke-opacity=".7" stroke-width="2"/>
+<rect x="18" y="18" width="1164" height="304" fill="none" stroke="#5ec8ff" stroke-opacity=".25"/>
+<text x="50" y="92" class="s" font-size="62" fill="#e8f9ff" filter="url(#gl)" textLength="560" lengthAdjust="spacingAndGlyphs">SOC HOME LAB</text>
+<text x="52" y="124" class="m" font-size="13" fill="#8fd3ff" textLength="560" lengthAdjust="spacing">DETECT · CORRELATE · RESPOND  //  A WAZUH-POWERED MINI ENTERPRISE</text>
+<text x="52" y="164" class="m" font-size="11" fill="#6fa8cc" letter-spacing="3">FIG.1 — LAB TOPOLOGY · ISOLATED NETWORK</text>
+<rect x="850" y="32" width="300" height="104" fill="#061326" stroke="#5ec8ff"/>
+<path d="M850 58H1150M850 84H1150M850 110H1150M940 32V136" stroke="#5ec8ff" stroke-opacity=".5" fill="none"/>
+<text x="862" y="50" class="m k">PROJECT</text><text x="952" y="50" class="m v">SOC-HOME-LAB</text>
+<text x="862" y="76" class="m k">SIEM</text><text x="952" y="76" class="m v">WAZUH</text>
+<text x="862" y="102" class="m k">MODULES</text><text x="952" y="102" class="m v">00 → 05</text>
+<text x="862" y="128" class="m k">STATUS</text><text x="952" y="128" class="m v g">OPERATIONAL</text>
+<circle cx="1134" cy="123" r="4" fill="#39ff14"><animate attributeName="opacity" values="1;.2;1" dur="1.3s" repeatCount="indefinite"/></circle>
+<g fill="none" stroke-width="2" stroke-dasharray="6 6">
+<animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1s" repeatCount="indefinite"/>
+<use href="#aA" stroke="#ff4d6d" stroke-opacity=".55"/>
+<use href="#aB" stroke="#ff4d6d" stroke-opacity=".55"/>
+<use href="#tA" stroke="#00f5ff" stroke-opacity=".55"/>
+<use href="#tB" stroke="#00f5ff" stroke-opacity=".55"/>
+</g>
+<rect x="70" y="217" width="120" height="56" rx="6" fill="#0a1a30" stroke="#ff4d6d" stroke-width="2"/>
+<text x="130" y="241" text-anchor="middle" class="s t">KALI LINUX</text>
+<text x="130" y="258" text-anchor="middle" class="m r" fill="#ff4d6d">ATTACKER</text>
+<rect x="385" y="225" width="70" height="40" rx="4" fill="#0a1a30" stroke="#ffffff" stroke-opacity=".8"/>
+<text x="420" y="250" text-anchor="middle" class="m t">LAN</text>
+<text x="420" y="282" text-anchor="middle" class="m r" fill="#8fd3ff">ISOLATED</text>
+<rect x="635" y="175" width="130" height="50" rx="6" fill="#0a1a30" stroke="#7aa2ff" stroke-width="2"/>
+<text x="700" y="198" text-anchor="middle" class="s t">WINDOWS 10</text>
+<text x="700" y="214" text-anchor="middle" class="m r" fill="#7aa2ff">AGENT + SYSMON</text>
+<rect x="635" y="265" width="130" height="50" rx="6" fill="#0a1a30" stroke="#ffb703" stroke-width="2"/>
+<text x="700" y="288" text-anchor="middle" class="s t">UBUNTU</text>
+<text x="700" y="304" text-anchor="middle" class="m r" fill="#ffb703">AGENT + SYSLOG</text>
+<rect x="945" y="205" width="170" height="80" rx="8" fill="#08283a" stroke="#00f5ff" stroke-width="3"><animate attributeName="stroke-opacity" values="1;.4;1" dur="2s" repeatCount="indefinite"/></rect>
+<text x="1030" y="238" text-anchor="middle" class="s t">WAZUH SERVER</text>
+<text x="1030" y="256" text-anchor="middle" class="m r" fill="#00f5ff">MANAGER · DASHBOARD</text>
+<text x="1030" y="272" text-anchor="middle" class="m r" fill="#8fd3ff">RULES · DECODERS</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.55;.6;.9;1" dur="3.2s" repeatCount="indefinite"/><rect x="1070" y="190" width="64" height="20" rx="4" fill="#ff4d6d"/><text x="1102" y="204" text-anchor="middle" class="m" font-size="11" fill="#fff" letter-spacing="2">ALERT</text></g>
+<circle r="5" fill="#ff4d6d" filter="url(#gl)"><animateMotion dur="3.2s" repeatCount="indefinite"><mpath href="#aA"/></animateMotion></circle>
+<circle r="5" fill="#ff4d6d" filter="url(#gl)"><animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite"><mpath href="#aB"/></animateMotion></circle>
+<circle r="4" fill="#00f5ff" filter="url(#gl)"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#tA"/></animateMotion></circle>
+<circle r="4" fill="#00f5ff" filter="url(#gl)"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#tB"/></animateMotion></circle>
+<path d="M18 30V18H30M1182 30V18H1170M18 310V322H30M1182 310V322H1170" stroke="#fff" stroke-opacity=".6" fill="none"/>
+<text x="1170" y="312" text-anchor="end" class="m" font-size="10" fill="#6fa8cc" letter-spacing="2">REV 05 · SCALE 1:1</text>
+<rect x="-60" y="0" width="60" height="340" fill="url(#sc)"><animateTransform attributeName="transform" type="translate" from="0 0" to="1260 0" dur="6s" repeatCount="indefinite"/></rect>
+</svg>
