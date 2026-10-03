@@ -1,30 +1,29 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:00f5ff,40:7b2ff7,100:ff00c8&height=260&section=header&text=SOC%20HOME%20LAB&fontSize=72&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=NEURAL%20DEFENSE%20GRID%20%E2%80%A2%20DETECT%20%E2%80%A2%20CORRELATE%20%E2%80%A2%20RESPOND&descAlignY=62&descSize=16" width="100%"/>
-
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=700&size=22&duration=2800&pause=700&color=00F5FF&center=true&vCenter=true&width=700&height=50&lines=%5B+WAZUH+CORE+%5D+ONLINE;%5B+AGENTS+%5D+WINDOWS+%2B+LINUX+SYNCED;%5B+RULES+%5D+CUSTOM+DETECTIONS+ARMED;%5B+FIM+%5D+WATCHING+EVERY+BYTE;%5B+STATUS+%5D+HUNTING+MODE+ENGAGED" alt="status"/></a>
+<img src="./assets/banner.svg" alt="SOC Home Lab" width="100%"/>
 
 <br>
 
-![Wazuh](https://img.shields.io/badge/SIEM-WAZUH-00f5ff?style=for-the-badge&labelColor=0a0e17&logo=wazuh&logoColor=00f5ff)
-![Windows](https://img.shields.io/badge/ENDPOINT-WINDOWS-7b2ff7?style=for-the-badge&labelColor=0a0e17&logo=windows11&logoColor=white)
-![Linux](https://img.shields.io/badge/ENDPOINT-LINUX-ff00c8?style=for-the-badge&labelColor=0a0e17&logo=linux&logoColor=white)
-![MITRE](https://img.shields.io/badge/MAPPED-MITRE%20ATT%26CK-ff3b3b?style=for-the-badge&labelColor=0a0e17)
-![Status](https://img.shields.io/badge/GRID-ONLINE-39ff14?style=for-the-badge&labelColor=0a0e17)
+![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-00f5ff?style=flat-square&labelColor=061326&logo=wazuh&logoColor=00f5ff)
+![Windows](https://img.shields.io/badge/Endpoint-Windows%2010-7aa2ff?style=flat-square&labelColor=061326&logo=windows11&logoColor=white)
+![Linux](https://img.shields.io/badge/Endpoint-Ubuntu-ffb703?style=flat-square&labelColor=061326&logo=ubuntu&logoColor=white)
+![Kali](https://img.shields.io/badge/Attacker-Kali%20Linux-ff4d6d?style=flat-square&labelColor=061326&logo=kalilinux&logoColor=white)
+![MITRE](https://img.shields.io/badge/Mapped-MITRE%20ATT%26CK-ffffff?style=flat-square&labelColor=061326)
+![Modules](https://img.shields.io/badge/Modules-6%2F6%20complete-39ff14?style=flat-square&labelColor=061326)
 
 <br>
 
-**[ Overview ](#-mission-brief) · [ Architecture ](#-grid-architecture) · [ Modules ](#-mission-modules) · [ ATT&CK ](#-threat-coverage) · [ Launch ](#-initialize-sequence)**
+### *"You can't defend what you can't see."*
+
+[`OVERVIEW`](#-sheet-01--overview) &nbsp;·&nbsp; [`TOPOLOGY`](#-sheet-02--topology) &nbsp;·&nbsp; [`MODULES`](#-sheet-03--module-index) &nbsp;·&nbsp; [`DETECTIONS`](#-sheet-04--detection-map) &nbsp;·&nbsp; [`BOM`](#-sheet-05--bill-of-materials) &nbsp;·&nbsp; [`REPLICATE`](#-sheet-06--replicate)
+
+<img src="./assets/divider.svg" width="100%"/>
 
 </div>
 
----
+## 📐 SHEET 01 — OVERVIEW
 
-## 🛰️ MISSION BRIEF
-
-> **"You can't defend what you can't see."**
-
-This is a fully operational **Security Operations Center** built from the ground up. Endpoints stream live telemetry into **Wazuh**, custom detection logic turns raw logs into high-fidelity alerts, and every scenario is **simulated, detected, and documented**.
+A fully operational **Security Operations Center** built from the ground up. Endpoints stream live telemetry into **Wazuh**, custom detection logic turns raw logs into high-fidelity alerts, and every scenario is **simulated, detected, and documented**.
 
 <table align="center">
 <tr>
@@ -35,97 +34,84 @@ This is a fully operational **Security Operations Center** built from the ground
 </tr>
 </table>
 
----
+<div align="center"><img src="./assets/divider.svg" width="100%"/></div>
 
-## 🧬 GRID ARCHITECTURE
+## 🧭 SHEET 02 — TOPOLOGY
 
 ```mermaid
 flowchart LR
-    subgraph ENDPOINTS["⚡ ENDPOINT LAYER"]
-        W["🪟 Windows Host<br/>Wazuh Agent"]
-        L["🐧 Linux Host<br/>Wazuh Agent"]
+    subgraph LAN["ISOLATED LAB NETWORK"]
+        K["🐉 Kali Linux<br/>Attacker"]
+        W["🪟 Windows 10<br/>Wazuh Agent + Sysmon"]
+        U["🐧 Ubuntu<br/>Wazuh Agent + Syslog"]
     end
-
-    subgraph CORE["🧠 DETECTION CORE"]
-        M["Wazuh Manager<br/>Rules · Decoders · Correlation"]
+    subgraph SOC["SOC LAYER"]
+        M["🧠 Wazuh Manager<br/>Rules · Decoders · Correlation"]
+        D["🖥️ Dashboard<br/>Alerts · Hunting · FIM"]
     end
+    K -- "attacks" --> W
+    K -- "attacks" --> U
+    W -- "telemetry" --> M
+    U -- "telemetry" --> M
+    M -- "enriched alerts" --> D
 
-    subgraph OPS["🖥️ ANALYST LAYER"]
-        D["Dashboard<br/>Alerts · Hunting · FIM"]
-    end
-
-    W -- "Security Events" --> M
-    L -- "auth.log / syslog" --> M
-    M -- "Enriched Alerts" --> D
-
-    classDef endpoint fill:#1a1030,stroke:#7b2ff7,stroke-width:2px,color:#fff;
-    classDef core fill:#06222b,stroke:#00f5ff,stroke-width:3px,color:#fff;
-    classDef ops fill:#2a0b24,stroke:#ff00c8,stroke-width:2px,color:#fff;
-    class W,L endpoint;
-    class M core;
-    class D ops;
+    linkStyle 0,1 stroke:#ff4d6d,stroke-width:2px
+    linkStyle 2,3 stroke:#00f5ff,stroke-width:2px
+    style LAN fill:#0a1a30,stroke:#5ec8ff,stroke-width:2px,color:#fff
+    style SOC fill:#08283a,stroke:#00f5ff,stroke-width:2px,color:#fff
+    style K fill:#2a0b14,stroke:#ff4d6d,stroke-width:2px,color:#fff
+    style W fill:#0a1a30,stroke:#7aa2ff,stroke-width:2px,color:#fff
+    style U fill:#2a1a05,stroke:#ffb703,stroke-width:2px,color:#fff
+    style M fill:#06222b,stroke:#00f5ff,stroke-width:3px,color:#fff
+    style D fill:#06222b,stroke:#00f5ff,stroke-width:2px,color:#fff
 ```
 
----
+<div align="center"><img src="./assets/divider.svg" width="100%"/></div>
 
-## 🚀 MISSION MODULES
+## 🧩 SHEET 03 — MODULE INDEX
 
-<div align="center">
-
-| ID | MODULE | OBJECTIVE | STATUS |
+| Sheet | Module | What it covers | Status |
 |:--:|:--|:--|:--:|
-| `00` | 🏛️ **Lab Architecture** | Network blueprint, components & data flow | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
-| `01` | 🪟 **Windows Security Monitoring** | Event logs, logons & endpoint telemetry | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
-| `02` | 🐧 **Linux Security Monitoring** | Auth logs, SSH activity, brute-force detection | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
-| `03` | 🧠 **Wazuh Detection Engineering** | Custom rules, decoders & alert tuning | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
-| `04` | 👤 **Windows User Account Management** | Rogue accounts, group changes, privilege abuse | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
-| `05` | 🧿 **Wazuh File Integrity Monitoring** | Detect create / modify / delete on critical files | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
+| `00` | 🏛️ [**Lab Architecture**](./00-Lab-Architecture) | Network blueprint, components & data flow | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=061326) |
+| `01` | 🪟 [**Windows Security Monitoring**](./01-Windows-Security-Monitoring) | Event logs, logons & endpoint telemetry | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=061326) |
+| `02` | 🐧 [**Linux Security Monitoring**](./02-Linux-Security-Monitoring) | Auth logs, SSH activity, brute-force detection | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=061326) |
+| `03` | 🧠 [**Wazuh Detection Engineering**](./03-Wazuh-Detection-Engineering) | Custom rules, decoders & alert tuning | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=061326) |
+| `04` | 👤 [**Windows User Account Management**](./04-Windows-User-Account-Management) | Rogue accounts, group changes, privilege abuse | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=061326) |
+| `05` | 🧿 [**Wazuh File Integrity Monitoring**](./05-Wazuh-File-Integrity-Monitoring) | Detect create / modify / delete on critical files | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=061326) |
 
-</div>
+<div align="center"><img src="./assets/divider.svg" width="100%"/></div>
 
-<details>
-<summary><b>📂 &nbsp;Expand repository file system</b></summary>
+## 🎯 SHEET 04 — DETECTION MAP
 
-```bash
-SOC-Home-Lab/
-├── 00-Lab-Architecture/                 # blueprint & data flow
-├── 01-Windows-Security-Monitoring/      # windows telemetry
-├── 02-Linux-Security-Monitoring/        # linux auth & syslog
-├── 03-Wazuh-Detection-Engineering/      # custom rules & decoders
-├── 04-Windows-User-Account-Management/  # identity & privilege tracking
-├── 05-Wazuh-File-Integrity-Monitoring/  # FIM configuration
-└── README.md
-```
+How the lab's simulations line up with **MITRE ATT&CK**:
 
-</details>
+| Simulated activity | Detected in | Technique |
+|:--|:--:|:--|
+| 🔑 SSH brute force | `02` Linux Monitoring | **T1110** · Brute Force |
+| 🚪 Use of valid Windows accounts | `01` Windows Monitoring | **T1078** · Valid Accounts |
+| 🧷 Rogue local account created | `04` Account Management | **T1136** · Create Account |
+| 🔼 Group / privilege change | `04` Account Management | **T1098** · Account Manipulation |
+| 💣 Tampering with critical files | `05` File Integrity | **T1565** · Data Manipulation |
 
----
-
-## 🎯 THREAT COVERAGE
-
-How the lab's detections line up with the **MITRE ATT&CK** framework:
-
-| TACTIC | TECHNIQUE | COVERED BY |
-|:--|:--|:--:|
-| 🔑 Credential Access | **T1110** · Brute Force | `02` Linux Monitoring |
-| 🚪 Initial Access / Persistence | **T1078** · Valid Accounts | `01` Windows Monitoring |
-| 🧷 Persistence | **T1136** · Create Account | `04` Account Management |
-| 🔼 Privilege Escalation | **T1098** · Account Manipulation | `04` Account Management |
-| 💣 Impact / Defense Evasion | **T1565** · Data Manipulation | `05` File Integrity |
-
----
-
-## 🔄 DETECTION PIPELINE
+> Also simulated: **suspicious PowerShell** activity (**T1059.001**).
 
 ```text
-  [ EVENT ] ──▶ [ COLLECT ] ──▶ [ DECODE ] ──▶ [ RULE MATCH ] ──▶ [ ALERT ] ──▶ [ TRIAGE ]
-   attack        agent ships      parse into      custom logic      severity       analyst
-   simulated     raw logs         fields          fires             assigned       validates
+ [ EVENT ] ─▶ [ COLLECT ] ─▶ [ DECODE ] ─▶ [ RULE MATCH ] ─▶ [ ALERT ] ─▶ [ TRIAGE ]
+  attack        agent ships    parse into     custom logic      severity     analyst
+  simulated     raw logs       fields         fires             assigned     validates
 ```
 
----
+<div align="center"><img src="./assets/divider.svg" width="100%"/></div>
 
-## 🧰 ARSENAL
+## 🧰 SHEET 05 — BILL OF MATERIALS
+
+| Component | Role in the lab |
+|:--|:--|
+| **Wazuh** Manager · Dashboard · Agents | SIEM core: collection, rules, correlation, alerting |
+| **Windows 10** + **Sysmon** | Monitored endpoint with rich process and event telemetry |
+| **Ubuntu** | Monitored Linux endpoint (auth logs, syslog) |
+| **Kali Linux** | Attacker machine for simulations |
+| **VMware** | Hypervisor hosting the isolated network |
 
 <div align="center">
 
@@ -133,40 +119,43 @@ How the lab's detections line up with the **MITRE ATT&CK** framework:
 ![Windows](https://img.shields.io/badge/Windows%20Events-0078D4?style=for-the-badge&logo=windows&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux%20Syslog-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Sysmon](https://img.shields.io/badge/Sysmon-1f1f1f?style=for-the-badge&logo=microsoft&logoColor=white)
-![VirtualBox](https://img.shields.io/badge/VMWare-183A61?style=for-the-badge&logo=virtualbox&logoColor=white)
+![Kali](https://img.shields.io/badge/Kali%20Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
 ![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-ff3b3b?style=for-the-badge)
 
 </div>
 
 **Skills demonstrated:** `SIEM Operations` · `Log Analysis` · `Threat Detection` · `Detection Engineering` · `Incident Triage` · `Security Documentation`
 
----
+<div align="center"><img src="./assets/divider.svg" width="100%"/></div>
 
-## ⚙️ INITIALIZE SEQUENCE
 
-```bash
-# STEP 01 ▸ study the blueprint
-cd 00-Lab-Architecture
+<details>
+<summary><b>📂 &nbsp;Repository file system</b></summary>
 
-# STEP 02 ▸ run modules in order, each one builds on the last
-# STEP 03 ▸ replay the simulations in your own lab
-# STEP 04 ▸ compare your alerts with the documented results
+```text
+SOC-Home-Lab/
+├── assets/                              banner & divider graphics
+├── 00-Lab-Architecture/                 blueprint & data flow
+├── 01-Windows-Security-Monitoring/      windows telemetry
+├── 02-Linux-Security-Monitoring/        linux auth & syslog
+├── 03-Wazuh-Detection-Engineering/      custom rules & decoders
+├── 04-Windows-User-Account-Management/  identity & privilege tracking
+├── 05-Wazuh-File-Integrity-Monitoring/  FIM configuration
+└── README.md
 ```
 
----
+</details>
 
 <div align="center">
 
+<img src="./assets/divider.svg" width="100%"/>
+
 ```text
-╔══════════════════════════════════════════════════╗
-║   > ALERTS TRIAGED ............. ∞               ║
-║   > BLIND SPOTS ................ 0               ║
-║   > OPERATOR STATUS ............ LEARNING 24/7   ║
-╚══════════════════════════════════════════════════╝
+┌──────────────────────────────────────────────────┐
+│  DWG   SOC-HOME-LAB          REV   05            │
+│  SIEM  WAZUH                 STATUS OPERATIONAL  │
+│  BUILT TO LEARN. DOCUMENTED TO PROVE IT.         │
+└──────────────────────────────────────────────────┘
 ```
-
-### ⚡ *Built to learn. Documented to prove it.* ⚡
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:ff00c8,50:7b2ff7,100:00f5ff&height=120&section=footer" width="100%"/>
 
 </div>
