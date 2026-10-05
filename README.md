@@ -34,7 +34,7 @@ This portfolio walks the **full investigation surface of a modern SOC**:
 <td align="center" width="20%"><h2>📊</h2><b>LOGS & SIEM</b><br><sub><i>What do the logs say happened?</i></sub><br><br><a href="./01-Splunk-SIEM-Investigations"><code>01 · Splunk</code></a></td>
 <td align="center" width="20%"><h2>🌐</h2><b>NETWORK</b><br><sub><i>What crossed the wire?</i></sub><br><br><a href="./02-PCAP-Analysis"><code>02 · PCAP</code></a></td>
 <td align="center" width="20%"><h2>🧠</h2><b>MEMORY</b><br><sub><i>What hides where disk can't see?</i></sub><br><br><a href="./03-Memory-Forensics"><code>03 · RAM</code></a></td>
-<td align="center" width="20%"><h2>📧</h2><b>EMAIL</b><br><sub><i>How did they get in the front door?</i></sub><br><br><a href="./04-Phising-Email-Analysis"><code>04 · Phishing</code></a></td>
+<td align="center" width="20%"><h2>📧</h2><b>EMAIL</b><br><sub><i>How did they get in the front door?</i></sub><br><br><a href="./04-Phishing-Email-Analysis"><code>04 · Phishing</code></a></td>
 <td align="center" width="20%"><h2>🖥️</h2><b>ENDPOINT</b><br><sub><i>What's happening on my machines now?</i></sub><br><br><a href="./SOC-Home-Lab"><code>05 · Home Lab</code></a></td>
 </tr>
 </table>
@@ -78,7 +78,7 @@ flowchart LR
 | `01` | 📊 [**Splunk SIEM Investigations**](./01-Splunk-SIEM-Investigations) | Log analysis · SPL · threat hunting | `Splunk` `SPL` | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
 | `02` | 🌐 [**PCAP Analysis**](./02-PCAP-Analysis) | Network forensics | `Wireshark` `IOC Extraction` | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
 | `03` | 🧠 [**Memory Forensics**](./03-Memory-Forensics) | Volatile evidence | `Memory Frameworks` `CLI Forensics` | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
-| `04` | 📧 [**Phishing Email Analysis**](./04-Phising-Email-Analysis) | Human-layer defense | `Header Analysis` `VirusTotal` `AbuseIPDB` | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
+| `04` | 📧 [**Phishing Email Analysis**](./04-Phishing-Email-Analysis) | Human-layer defense | `Header Analysis` `VirusTotal` `AbuseIPDB` | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
 | `05` | 🖥️ [**SOC Home Lab**](./SOC-Home-Lab) | Endpoint monitoring · detection engineering | `Wazuh` `Sysmon` `Kali` `PowerShell` `Bash` | ![](https://img.shields.io/badge/-COMPLETE-39ff14?style=flat-square&labelColor=0a0e17) |
 
 </div>
@@ -125,8 +125,8 @@ Attackers can avoid the disk, but not RAM. Memory images are examined for activi
 
 Most breaches begin with one email. Suspicious messages are dissected end to end and classified with evidence.
 
-- [CyberDefenders: PhishStrike](./04-Phising-Email-Analysis/01-CyberDefender-PhishStrike)
-- [BTLO: The Planets Prestige](./04-Phising-Email-Analysis/02-BTLO-ThePlanetsPrestige)
+- [CyberDefenders: PhishStrike](./04-Phishing-Email-Analysis/01-CyberDefender-PhishStrike)
+- [BTLO: The Planets Prestige](./04-Phishing-Email-Analysis/02-BTLO-ThePlanetsPrestige)
 - Header analysis (SPF / DKIM / DMARC), URL and attachment inspection, reputation checks, verdict and response actions
 
 </details>
@@ -227,7 +227,7 @@ SOC-Portfolio/
 ├── 01-Splunk-SIEM-Investigations/   → Unit42 · LogJammer
 ├── 02-PCAP-Analysis/                → Network Analysis · Tomcat
 ├── 03-Memory-Forensics/             → Reveal · RedLine
-├── 04-Phising-Email-Analysis/       → PhishStrike · The Planets Prestige
+├── 04-Phishing-Email-Analysis/       → PhishStrike · The Planets Prestige
 ├── SOC-Home-Lab/                    → Architecture · Windows · Linux · Detection Rules · Accounts · FIM
 ├── assets/                          → banner and divider
 └── README.md                        → You are here

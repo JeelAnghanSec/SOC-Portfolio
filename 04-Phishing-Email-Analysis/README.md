@@ -154,7 +154,7 @@ A Blue Team Labs Online phishing challenge: work through the email artifacts to 
 ## 🗺️ FOLDER MAP
 
 ```text
-04-Phising-Email-Analysis/
+04-Phishing-Email-Analysis/
 ├── assets/                          banner & divider graphics
 ├── 01-CyberDefender-PhishStrike/    Case 01
 ├── 02-BTLO-ThePlanetsPrestige/      Case 02
